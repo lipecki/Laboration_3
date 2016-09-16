@@ -25,8 +25,11 @@ public class Canvastest extends Application {
         primaryStage.show();
     }
 
-    private void drawShapes(GraphicsContext gc) {
-        gc.setFill(Color.GREEN);
+    private void drawShapes(GraphicsContext gc) 
+    {
+        
+        
+        /*gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(5);
         gc.strokeLine(40, 10, 10, 40);
@@ -47,6 +50,6 @@ public class Canvastest extends Application {
         gc.strokePolygon(new double[]{60, 90, 60, 90},
                          new double[]{210, 210, 240, 240}, 4);
         gc.strokePolyline(new double[]{110, 140, 110, 140},
-                          new double[]{210, 210, 240, 240}, 4);
+                          new double[]{210, 210, 240, 240}, 4); */
     }
 }
