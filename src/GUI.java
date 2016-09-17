@@ -20,7 +20,7 @@ public class GUI extends Application {
 
     private World world;
 
-    private Canvas canvas; // the surface whera pad and balls are drawn
+    private Canvas canvas; // the surface where a pad and balls are drawn
     private AnimationTimer timer;
 
     protected class BounceTimer extends AnimationTimer {
@@ -75,7 +75,7 @@ public class GUI extends Application {
         canvas.heightProperty().bind(scene.heightProperty());
         root.getChildren().add(canvas);
 
-        stage.setTitle("Bounce");
+        stage.setTitle("Laboration 3");
         stage.setScene(scene);
         stage.setResizable(true);
         stage.sizeToScene();
@@ -95,7 +95,7 @@ public class GUI extends Application {
     }
 
     private void showAlert(String message) {
-        alert.setHeaderText("");
+        alert.setHeaderText("Laboration 3");
         alert.setTitle("Alert!");
         alert.setContentText(message);
         alert.show();

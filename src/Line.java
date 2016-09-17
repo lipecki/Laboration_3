@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -29,49 +30,80 @@ import model.Point;
  */
 public class Line extends Shape{
     private double x2, y2;
-    private double [] x, y;
+    private List<Double> x, y;
     private List<Point> line;
     
     public Line(){
         super();
     }
     
-    public Line(double x1, double y1,double x2, double y2){
-        super(x1,x2, Color.BLUE);
-        init(new Point(x1,y2),new Point(x2,y2));
-        this.x2 = x2;
-        this.y2 = y2;
+    public Line(double x1, double y1, double x2, double y2){
+        super(x1, y1, Color.BLACK);
+        init(new Point(x1,y1),new Point(x2,y2));
+    }
+    /**
+     * Constructor for a list of coordinate pairs 
+     * that make up a line connecting the coordinates
+     * @param xy a list of x- and y-coordinate pairs
+     */
+    public Line(double ...xy){
+        super(xy[0],xy[1], Color.BLUE);
+        assert (xy.length%2 == 0);
         
+        List<Point> list = new ArrayList<>(xy.length);
+        for(int i = 0; i < xy.length -1; i += 2) 
+            list.add(new Point(xy[i],xy[i+1]));
+        
+        init((Point[]) list.toArray());    
     }
     
     private void init(Point ...points){
         this.line = new LinkedList<>();
-        for(Point p: points) line.add(p);
-        //if( sista punkten är utanför) reflektera linjen
+        this.x = new ArrayList<Double>(points.length);
+        this.y = new ArrayList<Double>(points.length);
+        for(Point p: points){
+            this.line.add(p);
+            this.x.add(p.getX());
+            this.y.add(p.getY());   
+        }
+        
+    }
+    
+    
+    public double getX(int i){
+        return this.x.get(i);
+    }
+    
+    public double getY(int i){
+        return this.y.get(i);
     }
     
     public double getX2(){
-        return this.x2;
+        return x.get(1);
     }
     
     public double getY2(){
-        return this.y2;
+        return y.get(1);
     }
     
     public void setX2(double x2){
+        this.x.set(1,x2);
         this.x2 = x2;
     }
     
     public void setY2(double y2){
+        this.y.set(1,y2);
         this.y2 = y2;
     }
     
-    public double getDirection(){
-        return Math. dy/dx;
-    }
-    
     public double getLength(){
-        return Math.hypot(super.getDx(), super.getDy());
+        double sum = 0.0;
+        for(int i = 0; i < (this.line.size() - 1); i++){
+            double dx = Math.abs(line.get(i+1).getX() - line.get(i).getX());
+            double dy = Math.abs(line.get(i+1).getY() - line.get(i).getY());
+            sum += Math.hypot(dx, dy);
+        }
+        return sum;
     }
     
     @Override
@@ -79,7 +111,10 @@ public class Line extends Shape{
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(5);
-        for(Point p: line.subList(0, 0))gc.strokeLine(x1, y1, x2, y2);
+        for(int i = 0; i < line.size() -1; i++){
+            gc.strokeLine(line.get(i).getX(), line.get(i).getY(),
+                    line.get(i+1).getX(), line.get(i+1).getY());
+        }
     }
     
         /**
@@ -103,10 +138,12 @@ public class Line extends Shape{
 
     @Override
     public String toString() {
-        String info
-                = this.getClass().getName() + ": x1=" + super.getX() + ", y1=" + super.getY()
-                + "x2=" + x2 + ", y2=" + y2
-                + ", color=" + this.getColor();
+        StringBuilder info = new StringBuilder();
+        info.append(this.getClass().getName());
+        for(double x: this.x && double y: this.y){
+            info.append(String.format(": x%d = %.2f, y%d = %.2f",this.x.indexOf(x)+1,x,this.y.indexOf(y)+1,y);
+        }
+        info.append(", color=" + this.getColor());
         return info;
     }
 }

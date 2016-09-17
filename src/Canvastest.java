@@ -29,10 +29,10 @@ public class Canvastest extends Application {
     {
         
         
-        /*gc.setFill(Color.GREEN);
+        gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(5);
-        gc.strokeLine(100, 10, 10, 10);
+        gc.strokeLine(100, 200, 10, 0);
         /*gc.fillOval(10, 60, 30, 30);
         gc.strokeOval(60, 60, 30, 30);
         gc.fillRect(110, 60, 30, 30);
@@ -49,11 +49,6 @@ public class Canvastest extends Application {
                        new double[]{210, 210, 240, 240}, 4);
         gc.strokePolygon(new double[]{60, 90, 60, 90},
                          new double[]{210, 210, 240, 240}, 4);
-        gc.strokePolyline(new double[]{110, 140, 110, 140},
-<<<<<<< Updated upstream
-                          new double[]{210, 210, 240, 240}, 4); */
-=======
-                          new double[]{210, 210, 240, 240}, 4);*/
->>>>>>> Stashed changes
+        gc.strokePolyline(new double[]{110, 140, 110, 140},new double[]{210, 210, 240, 240}, 4);*/
     }
 }

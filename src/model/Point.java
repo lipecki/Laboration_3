@@ -1,33 +1,33 @@
 package model;
 
 /**
- * A representation of a point, used e.g. as segments in a snake
- * or the position of an apple.
+ * A representation of a point
  * 
  * @author Anders Lindström <anderslm@kth.se>
+ * modified by Johan Lipecki <lipecki@kth.se
  */
 public class Point {
 
-    private int x, y;
+    private double x, y;
 
-    public Point(int x, int y) {
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -45,6 +45,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return String.format("( %.2f, %.2f)", x , y);
     }
 }
