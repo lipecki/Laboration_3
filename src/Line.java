@@ -26,7 +26,8 @@ import javafx.scene.paint.Color;
  */
 public class Line extends Shape{
     private double x1, x2, y1, y2;
-    private double dx1, dx2, dy1, dy2;
+    private double dx, dy;
+    private double direction, length;
     
     public Line(){
         this(0.0,0.0,0.0,0.0);
@@ -37,7 +38,8 @@ public class Line extends Shape{
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
-        dx1 = dx2 = dy1 = dy2 = 0.0;
+        this.dx = x2 - x1;
+        this.dy = y2 -y1;
         
     }
     
@@ -71,6 +73,14 @@ public class Line extends Shape{
     
     public void setY2(double y2){
         this.y2 = y2;
+    }
+    
+    public double getDirection(){
+        return dy/dx;
+    }
+    
+    public double getLength(){
+        return Math.sqrt(dx*dx + dy*dy);
     }
     
     @Override
