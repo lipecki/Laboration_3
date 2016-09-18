@@ -65,7 +65,7 @@ public class Line extends Shape{
         this.line = new LinkedList<>();
         this.line.addAll(Arrays.asList(points));
         
-        this.setVelocity(10,10);
+        this.setVelocity(50,100);
         this.direction = new ArrayList();
         for(Point p: this.line)
            this.direction.add(new Point(this.getDx(),this.getDy()));
@@ -152,22 +152,26 @@ public class Line extends Shape{
             double boxWidth, double boxHeight) {
         
         
-        for(int i = 0; i< this.line.size(); i++) {
+        for(int i = 0; i < this.line.size(); i++) {
             double x = this.line.get(i).getX();
             double dx = this.direction.get(i).getX();
             if(x <= boxX)  {
+                //this.line.get(i).setX(boxX);
                 dx = Math.abs(dx);
                 this.direction.get(i).setX(dx);
             } else if (x >= boxWidth) {
+                //this.line.get(i).setX(boxWidth);
                 this.direction.get(i).setX(-dx);
             }
                 
             double y = this.line.get(i).getY();
             double dy = this.direction.get(i).getY();
             if(y <= boxY)  {
+                //this.line.get(i).setY(boxY);
                 dy = Math.abs(dy);
                 this.direction.get(i).setY(dy);
-            } else if (y >= boxWidth) {
+            } else if (y >= boxHeight) {
+                //this.line.get(i).setY(boxHeight);
                 this.direction.get(i).setY(-dy);
             }
         }
