@@ -53,14 +53,14 @@ public class Line extends Shape{
         List<Point> list = new ArrayList<>(xy.length);
         for(int i = 0; i < xy.length -1; i += 2) 
             list.add(new Point(xy[i],xy[i+1]));
-        
+            
         init((Point[]) list.toArray());    
     }
     
     private void init(Point ...points){
         this.line = new LinkedList<>();
-        this.x = new ArrayList<Double>(points.length);
-        this.y = new ArrayList<Double>(points.length);
+        this.x = new ArrayList<>(points.length);
+        this.y = new ArrayList<>(points.length);
         for(Point p: points){
             this.line.add(p);
             this.x.add(p.getX());
@@ -79,7 +79,7 @@ public class Line extends Shape{
     }
     
     public double getX2(){
-        return x.get(1);
+        return  x.get(1);
     }
     
     public double getY2(){
@@ -127,14 +127,14 @@ public class Line extends Shape{
      * @param boxY upper left corner of the "box"
      * @param boxWidth
      * @param boxHeight
-     */
+     *
     @Override
     public void constrain(
             double boxX, double boxY, 
             double boxWidth, double boxHeight) {
 
         
-    }
+    }*/
 
     @Override
     public String toString() {
