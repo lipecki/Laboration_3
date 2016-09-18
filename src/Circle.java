@@ -15,14 +15,17 @@ import javafx.scene.paint.Color;
 public class Circle extends FillableShape {
     private double height, width;
     public Circle(){
-        this(1, 1);
+        this(1, 1, Color.BLACK, true);
     }
-    public Circle(double height, double width)
+    public Circle(double height, double width, Color color, boolean filled)
     {
         this.height = height;
         this.width = width;
+        this.setFilled(filled);
+        this.setColor(color);
         this.setX(0);
         this.setY(0);
+        this.setVelocity(1000, 1000);
     }
     
     public double getHeight(){
@@ -38,24 +41,11 @@ public class Circle extends FillableShape {
         this.width = width;
     }
     @Override
-    public void paint(GraphicsContext gx)
+    public void paint(GraphicsContext gc)
     {
-        gx.setFill(this.getColor());
-        gx.fillOval(this.getX(), this.getY(), this.height, this.width);
+        gc.setFill(this.getColor());
+        gc.fillOval(this.getX(), this.getY(), this.height, this.width);
     }
-    
-        /**
-     * Move the shape a distance depending on the elapsed time in nanoseconds.
-     * NB - the velocitey is measured in pixels/second.
-     *
-     * @param elapsedTimeNs the elapsed time in nanoseconds.
-     */
-    @Override
-    public void move(long elapsedTimeNs) {
-        this.setX(this.getDx() * elapsedTimeNs / BILLION);
-        this.setY(this.getDy() * elapsedTimeNs / BILLION);
-    }
-    
     
     @Override
     public String toString(){
