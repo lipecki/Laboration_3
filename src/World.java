@@ -24,11 +24,14 @@ public class World {
         this.width = width;
         this.height = height;
 
-        shapes = new Shape[1]; // an array of references 
+        shapes = new Shape[2]; // an array of references 
         
         // Shapes are instanciated
-        Shape line = new Circle(50,300);
+        Shape line = new Line(30.0,200.0, 50.0,100.0 ,300.0,150.0);
         shapes[0] = (Shape) line;
+        
+        line = new Line();
+        shapes[1] = (Shape) line;
     }
 
     /**
