@@ -65,6 +65,7 @@ public class Line extends Shape{
         this.line = new LinkedList<>();
         this.line.addAll(Arrays.asList(points));
         
+        this.setVelocity(10,10);
         this.direction = new ArrayList();
         for(Point p: this.line)
            this.direction.add(new Point(this.getDx(),this.getDy()));
@@ -179,7 +180,7 @@ public class Line extends Shape{
         info.append(this.getClass().getName()); 
         for(Point p: this.line)
             info.append(p.toString()); 
-        info.append(", color=" + this.getColor());
+        info.append(", color=").append(this.getColor());
         return info.toString(); 
     } 
 }
