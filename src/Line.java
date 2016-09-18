@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.MissingResourceException;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Point;
@@ -29,8 +31,8 @@ import model.Point;
  */
 public class Line extends Shape{
     private double x2, y2;
-    private List<Double> x, y;
     private List<Point> line;
+    private List<Point> direction;
     
     public Line(){
         super();
@@ -45,55 +47,52 @@ public class Line extends Shape{
      */
     public Line(double ...xy){
         super(xy[0],xy[1], Color.BLUE);
-        assert (xy.length%2 == 0);
+        if(xy.length%2 != 0) 
+            throw new MissingResourceException("One argument missing from (x,y)-coordinate",
+                    "Line","y-coordinate");
         
         List<Point> list = new ArrayList<>(xy.length);
         if(xy.length==2)list.add(new Point(0.0,0.0));
         
         for(int i = 0; i < xy.length -1; i += 2) 
             list.add(new Point(xy[i],xy[i+1]));
-        Point [] p = new Point[list.size()];
-        this.init(list.toArray(p));    
+        
+        this.init(list.toArray(new Point[list.size()]));    
     }
    
     
     private void init(Point []points){
         this.line = new LinkedList<>();
-        this.x = new ArrayList<>(points.length);
-        this.y = new ArrayList<>(points.length);
+        this.line.addAll(Arrays.asList(points));
         
-        for(Point p: points){ 
-            this.line.add(p);
-            this.x.add(p.getX()); 
-            this.y.add(p.getY());    
-        }
+        this.direction = new ArrayList();
+        for(Point p: this.line)
+           this.direction.add(new Point(this.getDx(),this.getDy()));
     }
     
     
     public double getX(int i){ 
-        return this.x.get(i);
+        return this.line.get(i).getX();
     } 
     
     public double getY(int i){
-        return this.y.get(i);
+        return this.line.get(i).getY();
     } 
     
     public double getX2(){ 
-        return  x.get(1);
+        return  this.line.get(1).getX();
     } 
     
     public double getY2(){ 
-        return y.get(1);
+        return this.line.get(1).getY();
     } 
     
     public void setX2(double x2){ 
-        this.x.set(1,x2);
-        this.x2 = x2; 
+       this.line.get(1).setX(x2);
     } 
     
     public void setY2(double y2){ 
-        this.y.set(1,y2);
-        this.y2 = y2; 
+        this.line.get(1).setY(y2);
     } 
     
     private double getLength(){
@@ -108,12 +107,31 @@ public class Line extends Shape{
     
     @Override
     public void paint(GraphicsContext gc){
-        gc.setStroke(Color.BLUE); 
-        gc.setLineWidth(5); 
+        //gc.setStroke(Color.BLUE); 
+        gc.setLineWidth(2); 
         for(int i = 0; i < line.size() -1; i++){ 
             gc.strokeLine(line.get(i).getX(), line.get(i).getY(),
                     line.get(i+1).getX(), line.get(i+1).getY());
         } 
+    }
+    
+    /**
+     * Move the line a distance depending on the elapsed time in nanoseconds.
+     * NB - the velocitey is measured in pixels/second.
+     *
+     * @param elapsedTimeNs the elapsed time in nanoseconds.
+     */
+    @Override
+    public void move(long elapsedTimeNs) {
+        for(int i = 0; i < this.line.size(); i++){
+            double d = this.line.get(i).getX();
+            d += this.direction.get(i).getX() * elapsedTimeNs / BILLION;
+            this.line.get(i).setX(d);
+            
+            d = this.line.get(i).getY();
+            d += this.direction.get(i).getY() * elapsedTimeNs / BILLION;
+            this.line.get(i).setY(d);
+        }
     }
     
      /**
@@ -131,7 +149,27 @@ public class Line extends Shape{
     public void constrain(
             double boxX, double boxY, 
             double boxWidth, double boxHeight) {
-
+        
+        
+        for(int i = 0; i< this.line.size(); i++) {
+            double x = this.line.get(i).getX();
+            double dx = this.direction.get(i).getX();
+            if(x <= boxX)  {
+                dx = Math.abs(dx);
+                this.direction.get(i).setX(dx);
+            } else if (x >= boxWidth) {
+                this.direction.get(i).setX(-dx);
+            }
+                
+            double y = this.line.get(i).getY();
+            double dy = this.direction.get(i).getY();
+            if(y <= boxY)  {
+                dy = Math.abs(dy);
+                this.direction.get(i).setY(dy);
+            } else if (y >= boxWidth) {
+                this.direction.get(i).setY(-dy);
+            }
+        }
         
     }
     
@@ -139,11 +177,8 @@ public class Line extends Shape{
     public String toString() { 
         StringBuilder info = new StringBuilder();
         info.append(this.getClass().getName()); 
-        int index = 0;
-        for(double x: this.x){ 
-            index = this.x.indexOf(x);
-            info.append(String.format(": x%d = %.2f, y%d = %.2f",index+1,x,index+1,this.y.get(index)));
-        } 
+        for(Point p: this.line)
+            info.append(p.toString()); 
         info.append(", color=" + this.getColor());
         return info.toString(); 
     } 
