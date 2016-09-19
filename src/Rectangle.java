@@ -64,7 +64,7 @@ public class Rectangle extends FillableShape {
             double boxWidth, double boxHeight) {
             
         double x = this.getX();
-        double y = this.getDy();
+        double y = this.getY();
             
         double dx = this.getDx();
         double dy = this.getDy();
@@ -76,8 +76,8 @@ public class Rectangle extends FillableShape {
         }
         dx = this.getDx();
         if (y <= boxY) {
-            this.setVelocity(dx, Math.abs(this.getDy()));
-        } else if (y + height > boxWidth) {
+            this.setVelocity(dx, Math.abs(dy));
+        } else if (y + height > boxHeight) {
             this.setVelocity(dx, -dy);
         }
     }
