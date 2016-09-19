@@ -161,7 +161,7 @@ public class Line extends Shape{
                 this.direction.get(i).setX(dx);
             } else if (x > boxWidth) {
                 //this.line.get(i).setX(boxWidth);
-                this.direction.get(i).setX(-dx);
+                this.direction.get(i).setX(-Math.abs(dx));
             }
                 
             double y = this.line.get(i).getY();
@@ -172,7 +172,7 @@ public class Line extends Shape{
                 this.direction.get(i).setY(dy);
             } else if (y > boxHeight) {
                 //this.line.get(i).setY(boxHeight);
-                this.direction.get(i).setY(-dy);
+                this.direction.get(i).setY(-Math.abs(dy));
             }
         }
         

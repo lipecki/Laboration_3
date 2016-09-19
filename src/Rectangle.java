@@ -31,8 +31,9 @@ public class Rectangle extends FillableShape {
         super();
         this.height = height;
         this.width = width;
+        this.setColor(color);
         this.setFilled(filled);
-        this.setVelocity(100, 100);
+        this.setVelocity(100, 2000);
     }
     
     public double getHeight(){
@@ -72,13 +73,13 @@ public class Rectangle extends FillableShape {
         if (x <= boxX) {
             this.setVelocity(Math.abs(dx), dy);
         } else if (x + width > boxWidth) {
-            this.setVelocity(-dx, dy);
+            this.setVelocity(-Math.abs(dx), dy);
         }
         dx = this.getDx();
         if (y <= boxY) {
             this.setVelocity(dx, Math.abs(dy));
         } else if (y + height > boxHeight) {
-            this.setVelocity(dx, -dy);
+            this.setVelocity(dx, -Math.abs(dy));
         }
     }
 }
