@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
  * @author Viggo
  */
 public class Circle extends FillableShape {
-    private double height, width;
     public Circle(){
         this(1, 1, Color.BLACK, true);
     }
@@ -42,7 +41,9 @@ public class Circle extends FillableShape {
     public void paint(GraphicsContext gc)
     {
         gc.setFill(this.getColor());
-        gc.fillOval(this.getX(), this.getY(), this.height, this.width);
+        
+        if (this.filled) gc.fillOval(this.getX(), this.getY(), this.width, this.height);
+        else gc.strokeOval(this.getX(), this.getY(), this.width, this.height);
     }
     
     @Override
