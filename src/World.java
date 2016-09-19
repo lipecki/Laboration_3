@@ -27,10 +27,11 @@ public class World {
         shapes = new Shape[3]; // an array of references 
         
         // Shapes are instanciated
-        Shape line = new Line(30.0,200.0, 50.0,100.0 ,300.0,150.0);
+        Shape line = new Line(30.0,200.0, 50.0,100.0 ,300.0, 10);
         shapes[0] = (Shape) line;
         
-        line = new Line();
+        
+        line = new Rectangle(20, 20, Color.GREEN, false);
         shapes[1] = (Shape) line;
         Shape circle = (Shape) new Circle(20, 20, Color.BLUE, true);
         shapes[2] = circle;
