@@ -9,9 +9,16 @@
  * @author Viggo
  */
 public abstract class FillableShape extends Shape{
-    private boolean filled;
+    protected boolean filled;
+    protected double width, height;
     protected FillableShape(){
-    
+        this(10, 10);
+    }
+    protected FillableShape(double width, double height)
+    {
+        this.width = width;
+        this.height = height;
+        this.filled = true;
     }
     public boolean isFilled(){
         return this.filled;

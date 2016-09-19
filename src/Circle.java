@@ -17,10 +17,9 @@ public class Circle extends FillableShape {
     public Circle(){
         this(1, 1, Color.BLACK, true);
     }
-    public Circle(double height, double width, Color color, boolean filled)
+    public Circle(double width, double height, Color color, boolean filled)
     {
-        this.height = height;
-        this.width = width;
+        super(width, height);
         this.setFilled(filled);
         this.setColor(color);
         this.setX(0);
