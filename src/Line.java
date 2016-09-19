@@ -45,8 +45,8 @@ public class Line extends Shape{
      * that make up a line connecting the coordinates
      * @param xy a list of x- and y-coordinate pairs
      */
-    public Line(double ...xy)throws IndexOutOfBoundsException {
-        super(xy[0],xy[1], Color.BLUE);
+    public Line(Color color, double ...xy)throws IndexOutOfBoundsException {
+        super(xy[0],xy[1], color);
         if(xy.length%2 != 0) 
             throw new MissingResourceException("One argument missing from (x,y)-coordinate",
                     "Line","y-coordinate");
@@ -108,7 +108,7 @@ public class Line extends Shape{
     
     @Override
     public void paint(GraphicsContext gc){
-        //gc.setStroke(Color.BLUE); 
+        gc.setStroke(this.getColor()); 
         gc.setLineWidth(2); 
         for(int i = 0; i < line.size() -1; i++){ 
             gc.strokeLine(line.get(i).getX(), line.get(i).getY(),

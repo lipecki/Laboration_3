@@ -33,15 +33,28 @@ public class Rectangle extends FillableShape {
         this.setVelocity(50, 100);
     }
     
+    /**
+     * @return rectangle height
+     */
     public double getHeight(){
         return this.height;
     }
+    
+    /**
+     * @return rectangle width
+     */
     public double getWidth(){
         return this.width;
     }
+    
+    /**
+     * @param height 
+     */
     public void setHeight(double height){
         this.height = height;
     }
+    
+    
     public void setWidth(double width){
         this.width = width;
     }
@@ -52,7 +65,10 @@ public class Rectangle extends FillableShape {
             gc.setFill(this.getColor());
             gc.fillRect(this.getX(), this.getY(), this.height, this.width);
         }
-        else gc.strokeRect(this.getX(), this.getY(), width, height);
+        else {
+            gc.setStroke(this.getColor());
+            gc.strokeRect(this.getX(), this.getY(), width, height);
+        }
     }
     
     @Override
