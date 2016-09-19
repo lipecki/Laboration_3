@@ -74,7 +74,13 @@ public class Circle extends FillableShape {
     public String toString(){
         return "X: " + this.getX() + ", Y: " + this.getY() + ", Width: " + this.width + ", Height: " + this.height;
     }
-    
+    /**
+     * Bounces the circle off of the given "box" width and height
+     * @param boxX
+     * @param boxY
+     * @param boxWidth
+     * @param boxHeight 
+     */
     @Override
         public void constrain(
             double boxX, double boxY, 
