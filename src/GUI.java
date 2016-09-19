@@ -57,7 +57,8 @@ public class GUI extends Application {
 
             // paint the shapes
             for (Shape b : world.getShapes()) {
-                b.paint(gc);
+                if(b != null) b.paint(gc);
+                else continue;
             }
         }
     }
