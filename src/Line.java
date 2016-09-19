@@ -45,7 +45,7 @@ public class Line extends Shape{
      * that make up a line connecting the coordinates
      * @param xy a list of x- and y-coordinate pairs
      */
-    public Line(double ...xy){
+    public Line(double ...xy)throws IndexOutOfBoundsException {
         super(xy[0],xy[1], Color.BLUE);
         if(xy.length%2 != 0) 
             throw new MissingResourceException("One argument missing from (x,y)-coordinate",
@@ -159,7 +159,7 @@ public class Line extends Shape{
                 //this.line.get(i).setX(boxX);
                 dx = Math.abs(dx);
                 this.direction.get(i).setX(dx);
-            } else if (x >= boxWidth) {
+            } else if (x > boxWidth) {
                 //this.line.get(i).setX(boxWidth);
                 this.direction.get(i).setX(-dx);
             }
@@ -170,7 +170,7 @@ public class Line extends Shape{
                 //this.line.get(i).setY(boxY);
                 dy = Math.abs(dy);
                 this.direction.get(i).setY(dy);
-            } else if (y >= boxHeight) {
+            } else if (y > boxHeight) {
                 //this.line.get(i).setY(boxHeight);
                 this.direction.get(i).setY(-dy);
             }
