@@ -25,7 +25,7 @@ public class Circle extends FillableShape {
         this.setColor(color);
         this.setX(0);
         this.setY(0);
-        this.setVelocity(1000, 1000);
+        this.setVelocity(100, 100);
     }
     
     public double getHeight(){
@@ -50,5 +50,25 @@ public class Circle extends FillableShape {
     @Override
     public String toString(){
         return "X: " + this.getX() + ", Y: " + this.getY() + ", Width: " + this.width + ", Height: " + this.height;
+    }
+    @Override
+        public void constrain(
+            double boxX, double boxY, 
+            double boxWidth, double boxHeight) {
+        // If outside the box - calculate new dx and dy
+        double x = this.getX();
+        double y = this.getY();
+        double dx = this.getDx();
+        double dy = this.getDy();
+        if (x < boxX) {
+            this.setVelocity(Math.abs(dx), dy);
+        } else if (x + width > boxWidth) {
+            this.setVelocity(-Math.abs(dx), dy);
+        }
+        if (y < boxY) {
+            this.setVelocity(dx, Math.abs(dy));
+        } else if (y + height > boxHeight) {
+            this.setVelocity(dx, -Math.abs(dy));
+        }
     }
 }
