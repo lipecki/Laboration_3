@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
  * @author Viggo
  */
 public class Rectangle extends FillableShape {
-    private double height, width;
     
     public Rectangle(){
         this(20, 20, Color.BLACK, true);
@@ -26,14 +25,12 @@ public class Rectangle extends FillableShape {
      * @param color
      * @param filled
      */
-    public Rectangle(double height, double width, Color color, boolean filled)
+    public Rectangle(double width, double height, Color color, boolean filled)
     {
-        super();
-        this.height = height;
-        this.width = width;
+        super(width, height);
         this.setColor(color);
         this.setFilled(filled);
-        this.setVelocity(100, 2000);
+        this.setVelocity(100, 200);
     }
     
     public double getHeight(){
