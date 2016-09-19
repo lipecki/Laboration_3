@@ -24,18 +24,16 @@ public class World {
         this.width = width;
         this.height = height;
 
-        shapes = new Shape[5]; // an array of references 
+        shapes = new Shape[3]; // an array of references 
         
         // Shapes are instanciated
-        Shape line = new Line(Color.CADETBLUE, 30.0,200.0, 50.0,100.0 ,300.0, 10);
-        shapes[0] = (Shape) line;
+        shapes[0] = (Shape) new Line(Color.CADETBLUE, 30.0,200.0, 50.0,100.0 ,300.0, 10);
+        shapes[1] = (Shape) new Rectangle(20, 20, Color.TOMATO, false);
+        shapes[2] = (Shape) new Circle(20, 20, Color.BLUE, true);
+        int f = 50;
+        for(Shape s: shapes) s.setVelocity(f += 50, f += 100);
         
         
-        line = new Rectangle(20, 20, Color.TOMATO, false);
-        line.setVelocity(50, 10);
-        shapes[1] = (Shape) line;
-        Shape circle = (Shape) new Circle(20, 20, Color.BLUE, true);
-        shapes[2] = circle;
     }
 
     /**
