@@ -27,7 +27,7 @@ public class Rectangle extends FillableShape {
      */
     public Rectangle(double width, double height, Color color, boolean filled)
     {
-        super(width, height);
+        super(width, height,color);
         this.setColor(color);
         this.setFilled(filled);
         this.setVelocity(50, 100);
