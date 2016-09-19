@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
  */
 
 /**
- *
- * @author Viggo
+ * Constructor for a filled black triangle of width and height 20px
+ * @author Viggo & Johan
  */
 public class Rectangle extends FillableShape {
     
@@ -19,10 +19,10 @@ public class Rectangle extends FillableShape {
     }
 
     /**
-     *
+     * Constructor for a filled or an unfilled rectangle
      * @param height
      * @param width
-     * @param color
+     * @param color of filled rectangle
      * @param filled
      */
     public Rectangle(double width, double height, Color color, boolean filled)
@@ -58,6 +58,10 @@ public class Rectangle extends FillableShape {
     public void setWidth(double width){
         this.width = width;
     }
+    
+    /** Draws a filled or unfilled rectangle
+     * @param gc GraphicsContext object
+     */
     @Override
     public void paint(GraphicsContext gc)
     {
@@ -76,6 +80,15 @@ public class Rectangle extends FillableShape {
         return "X: " + this.getX() + ", Y: " + this.getY() + ", Width: " + this.width + ", Height: " + this.height;
     }
     
+    /**
+     * Constrains the shape inside the given area/box, by bouncing it off att
+     * the edges.
+     *
+     * @param boxX upper left corner of the "box"
+     * @param boxY upper left corner of the "box"
+     * @param boxWidth
+     * @param boxHeight
+     */
     @Override
     public void constrain(double boxX, double boxY,             
             double boxWidth, double boxHeight) {
