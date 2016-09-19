@@ -30,7 +30,7 @@ public class Rectangle extends FillableShape {
         super(width, height);
         this.setColor(color);
         this.setFilled(filled);
-        this.setVelocity(100, 200);
+        this.setVelocity(50, 100);
     }
     
     public double getHeight(){
@@ -48,8 +48,11 @@ public class Rectangle extends FillableShape {
     @Override
     public void paint(GraphicsContext gc)
     {
-        gc.setFill(this.getColor());
-        gc.fillRect(this.getX(), this.getY(), this.height, this.width);
+        if(this.filled) {
+            gc.setFill(this.getColor());
+            gc.fillRect(this.getX(), this.getY(), this.height, this.width);
+        }
+        else gc.strokeRect(this.getX(), this.getY(), width, height);
     }
     
     @Override
