@@ -43,6 +43,7 @@ public class Line extends Shape{
     /**
      * Constructor for a list of coordinate pairs 
      * that make up a line connecting the coordinates
+     * @param color
      * @param xy a list of x- and y-coordinate pairs
      */
     public Line(Color color, double ...xy)throws IndexOutOfBoundsException {
