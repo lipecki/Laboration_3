@@ -31,7 +31,8 @@ public class World {
         shapes[0] = (Shape) line;
         
         
-        line = new Rectangle(20, 20, Color.GREEN, false);
+        line = new Rectangle(20, 20, Color.TOMATO, false);
+        line.setVelocity(50, 10);
         shapes[1] = (Shape) line;
         Shape circle = (Shape) new Circle(20, 20, Color.BLUE, true);
         shapes[2] = circle;
