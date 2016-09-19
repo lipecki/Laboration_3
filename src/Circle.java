@@ -13,43 +13,68 @@ import javafx.scene.paint.Color;
  * @author Viggo
  */
 public class Circle extends FillableShape {
+    /**
+     * Creates a new black, filled circle with width and height set as 10
+     */
     public Circle(){
-        this(1, 1, Color.BLACK, true);
+        this(10, 10, Color.BLACK, true);
     }
+    /**
+     * Creates a new fillable circle with desired width, height and color.
+     * @param width The width of the circle
+     * @param height The height of the circle
+     * @param color The color of the circle
+     * @param filled Whether the circle is filled or not
+     */
     public Circle(double width, double height, Color color, boolean filled)
     {
         super(width, height, color);
         this.setFilled(filled);
         this.setX(0);
         this.setY(0);
-        this.setVelocity(100, 100);
     }
-    
     public double getHeight(){
         return this.height;
     }
     public double getWidth(){
         return this.width;
     }
+    /**
+     * Sets the new height of the circle
+     * @param height 
+     */
     public void setHeight(double height){
         this.height = height;
     }
+    /**
+     * Sets the new width of the circle
+     * @param width 
+     */
     public void setWidth(double width){
         this.width = width;
     }
+    /**
+     * Paints the circle with a GraphicsContext reference
+     * @param gc GraphicsContext reference
+     */
     @Override
     public void paint(GraphicsContext gc)
     {
-        gc.setFill(this.getColor());
-        
-        if (this.filled) gc.fillOval(this.getX(), this.getY(), this.width, this.height);
-        else gc.strokeOval(this.getX(), this.getY(), this.width, this.height);
+        if (this.filled) {
+            gc.setFill(this.getColor());
+            gc.fillOval(this.getX(), this.getY(), this.width, this.height);
+        }
+        else {
+            gc.setStroke(this.getColor());
+            gc.strokeOval(this.getX(), this.getY(), this.width, this.height);
+        }
     }
     
     @Override
     public String toString(){
         return "X: " + this.getX() + ", Y: " + this.getY() + ", Width: " + this.width + ", Height: " + this.height;
     }
+    
     @Override
         public void constrain(
             double boxX, double boxY, 
