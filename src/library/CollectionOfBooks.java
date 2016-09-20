@@ -17,10 +17,33 @@
  */
 package library;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class CollectionOfBooks {
-    
+    private ArrayList<Book> books;
+    public CollectionOfBooks()
+    {
+        books = new ArrayList<>();
+    }
+    public void addBook(Book book)
+    {
+        books.add(book);
+    }
+    public ArrayList<Book> getBooks()
+    {
+        return (ArrayList<Book>) books.clone();
+    }
+    public ArrayList<Book> getBooksByTitle(String title)
+    {
+        ArrayList<Book> books_by_title = new ArrayList<>();
+        for (Book b : books)
+        {
+            if (b.getTitle().equals(title)) books_by_title.add(b);
+        }
+        return books_by_title;
+    }
 }

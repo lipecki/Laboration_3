@@ -17,10 +17,60 @@
  */
 package library;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Book {
+public class Book implements Comparable{
+
+    private String isbn;
+    private String title;
+    private int edition;
+    private double price;
+    private ArrayList<Author> authors;
+    
+    public Book(String isbn, String title, int edition, double price)
+    {
+        this.isbn = isbn;
+        this.title = title;
+        this.edition = edition;
+        this.price = price;
+    }
+    
+    public String getISBN()
+    {
+        return this.isbn;
+    }
+    
+    public String getTitle()
+    {
+        return this.title;
+    }
+    
+    public int getEdition()
+    {
+        return this.edition;
+    }
+    
+    public double getPrice()
+    {
+        return this.price;
+    }
+    
+    public void addAuthor(Author author)
+    {
+        authors.add(author);
+    }
+    public ArrayList<Author> getAuthors()
+    {
+        return (ArrayList<Author>) authors.clone();
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
