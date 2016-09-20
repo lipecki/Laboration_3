@@ -1,7 +1,14 @@
+package library.tests;
+
+
+import library.Author;
+
 /*
- * Laboration 3 license
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * [Project] license
  * 
- * Copyright © 2016 Johan Lipecki & Viggo Lundén
+ * Copyright © 2016 Johan Lipecki
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,24 +20,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-package library;
-
-import library.tests.Books;
 
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class UserInterface {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
-        Books test = new Books();
-
+public class Books {
+    public Books(){
+        Author Johan = new Author("Johan Lipecki");
+        System.out.println(Johan.firstname());
     }
-    
 }
