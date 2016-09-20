@@ -1,9 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * [Project] license
+ * Laboration 3 license
  * 
- * Copyright © 2016 Johan Lipecki
+ * Copyright © 2016 Johan Lipecki & Viggo Lundén
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,9 +66,10 @@ public class Book implements Comparable{
         return (ArrayList<Author>) authors.clone();
     }
     
+    
     @Override
     public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
