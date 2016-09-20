@@ -69,7 +69,9 @@ public class Book implements Comparable{
     
     @Override
     public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Book otherBook = (Book)o;
+        return title.compareTo((String)otherBook.getTitle());
+        
     }
     
 }

@@ -18,6 +18,8 @@
 package library;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -75,6 +77,7 @@ public class CollectionOfBooks {
         {
             if (b.getTitle().equals(title)) books_by_title.add(b);
         }
+        Collections.sort(books_by_title);
         return books_by_title;
     }
 }
