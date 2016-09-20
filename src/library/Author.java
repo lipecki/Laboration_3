@@ -41,8 +41,13 @@ public class Author {
     }
     
     public String lastname(){
-        if(lastname.isEmpty()) return "";
+        if(lastname.isEmpty()) return null;
         return this.lastname;
+    }
+    
+    public String firstname(){
+        if(firstname.isEmpty()) return null;
+        return this.firstname;
     }
     
     @Override
