@@ -21,10 +21,10 @@ package library;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class Author {
-    private String name;
     private String lastname;
     private String firstname;
     private String [] names;
+    private final String name;
     public Author(String name)
     {
         this.name = name;
