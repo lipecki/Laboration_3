@@ -22,11 +22,31 @@ package library;
  */
 public class Author {
     private String name;
+    private String lastname;
+    private String firstname;
+    private String [] names;
     public Author(String name)
     {
         this.name = name;
+        this.names = name.split(" ", 5);
+        if(name.contains(" ")) {
+            firstname = names[0];
+            lastname = names[names.length -1];
+        }
+        else { firstname = name; lastname = "";}
+        
     }
     public String getName(){
         return this.name;
+    }
+    
+    public String lastname(){
+        if(lastname.isEmpty()) return "";
+        return this.lastname;
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
 }
