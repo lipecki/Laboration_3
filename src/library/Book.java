@@ -23,10 +23,10 @@ import java.util.ArrayList;
  */
 public class Book implements Comparable{
 
-    private String isbn;
-    private String title;
-    private int edition;
-    private double price;
+    private final String isbn;
+    private final String title;
+    private final int edition;
+    private final double price;
     private ArrayList<Author> authors;
     
     public Book(String isbn, String title, int edition, double price)
