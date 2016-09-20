@@ -25,8 +25,11 @@ import library.Author;
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Books {
-    public Books(){
+public class BooksTest {
+    public BooksTest(){
+        
+        
+        
         Author Johan = new Author("Johan Lipecki");
         System.out.println(Johan.firstname());
     }

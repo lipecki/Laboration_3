@@ -15,7 +15,9 @@
  */
 package library;
 
-import library.tests.Books;
+import java.util.ArrayList;
+import java.util.Arrays;
+import library.tests.BooksTest;
 
 /**
  *
@@ -23,14 +25,28 @@ import library.tests.Books;
  */
 public class UserInterface {
 
+    private String menu;
+    
+    UserInterface(){
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Books test = new Books();
-
+        //BooksTest test = new BooksTest();
+        menu();
+        
+    }
+    
+    public static void menu(){
+        for(Enum e: Menu.values()) System.out.println(e);
+    }
+    
+    public enum Menu {
+    ShowLibrary, SearchForBook, SearchByAuthor ;
     }
     
 }
