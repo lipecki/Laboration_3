@@ -28,7 +28,7 @@ public class UserInterface {
         // TODO code application logic here
         
         Author Johan = new Author("Johan Lipecki");
-        System.out.println(Johan.lastname());
+        System.out.println(Johan.firstname());
     }
     
 }

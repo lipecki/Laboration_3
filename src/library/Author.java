@@ -16,24 +16,30 @@
 
 package library;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class Author {
-    private String lastname;
-    private String firstname;
-    private String [] names;
+    private final String lastname;
+    private final String firstname;
+    private ArrayList<String> names;
     private final String name;
     public Author(String name)
     {
         this.name = name;
-        this.names = name.split(" ", 5);
+        
+        names = new ArrayList<>();
+        for(String s: name.split(" ", 5)) names.add(s);
+        
         if(name.contains(" ")) {
-            firstname = names[0];
-            lastname = names[names.length -1];
+            firstname = names.get(0);
+            lastname = names.get(names.size() - 1);
         }
-        else { firstname = name; lastname = "";}
+        else { firstname = name; lastname = null;}
         
     }
     public String getName(){
