@@ -31,7 +31,7 @@ public class World {
         shapes[1] = (Shape) new Rectangle(20, 20, Color.TOMATO, false);
         shapes[2] = (Shape) new Circle(20, 20, Color.BLUE, true);
         int f = 50;
-        for(Shape s: shapes) s.setVelocity(f += 50, f += 100);
+        for(Shape s: shapes) s.setVelocity(f += 20, f += 30);
         
         
     }
