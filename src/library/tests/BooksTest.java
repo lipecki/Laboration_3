@@ -38,9 +38,19 @@ public class BooksTest {
         inputFile = new File("src/library/Filename.txt");
         readFile = new Scanner(inputFile);
         ArrayList<Book> books = new ArrayList();
-        books.add(new Book(readFile.nextLine()));
+        do{
+            books.add(new Book(readFile.nextLine()));
+        }while(readFile.hasNext());
         
         Author Johan = new Author("Johan Lipecki");
-        System.out.println(Johan.firstname());
+        books.get(0).addAuthor(Johan);
+        
+        System.out.println("\nBöcker:");
+        for(Book b: books) 
+            for(String s: b.toString().split(";"))
+                    System.out.println(s);
+       
+        
+        
     }
 }
