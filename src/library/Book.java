@@ -43,7 +43,7 @@ public class Book implements Comparable{
     
     public Book(String s){
         init();
-        book = Arrays.asList(s.split(",", 4));
+        book = Arrays.asList(s.split(";", 5));
         this.isbn = book.get(0);
         this.title = book.get(1);
         this.edition = Integer.decode(book.get(2));
@@ -78,8 +78,8 @@ public class Book implements Comparable{
     
     public void addAuthor(Author author)
     {
-       //this.book.add(author.getName()); 
        authors.add(author);
+       
     }
     public ArrayList<Author> getAuthors()
     {

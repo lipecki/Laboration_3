@@ -43,14 +43,16 @@ public class BooksTest {
         }while(readFile.hasNext());
         
         Author Johan = new Author("Johan Lipecki");
-        books.get(0).addAuthor(Johan);
+        Book bok = books.get(0);
+        bok.addAuthor(Johan);
+        books.set(0, bok);
         
         System.out.println("\nBöcker:");
-        for(Book b: books) 
+        for(Book b: books) {
+            System.out.println("---------------");
+            System.out.println(b);
             for(String s: b.toString().split(";"))
                     System.out.println(s);
-       
-        
-        
+        }
     }
 }
