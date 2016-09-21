@@ -28,12 +28,13 @@ public class Author {
     private final String firstname;
     private ArrayList<String> names;
     private final String name;
+    
     public Author(String name)
     {
         this.name = name;
         
         names = new ArrayList<>();
-        for(String s: name.split(" ", 5)) names.add(s);
+        names.addAll(Arrays.asList(name.split(" ", 5)));
         
         if(name.contains(" ")) {
             firstname = names.get(0);

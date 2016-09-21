@@ -42,15 +42,15 @@ public class BooksTest {
             books.add(new Book(readFile.nextLine()));
         }while(readFile.hasNext());
         
-        Author Johan = new Author("Johan Lipecki");
-        Book bok = books.get(0);
-        bok.addAuthor(Johan);
-        books.set(0, bok);
+        Author Johan = new Author("Viggo Lundén");
+        books.get(0).addAuthor(Johan);
+        //bok.addAuthor((Author) Johan);
+        //System.out.println(bok);
+        //books.set(0, bok);
         
         System.out.println("\nBöcker:");
         for(Book b: books) {
             System.out.println("---------------");
-            System.out.println(b);
             for(String s: b.toString().split(";"))
                     System.out.println(s);
         }

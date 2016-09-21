@@ -17,6 +17,7 @@ package library;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class Book implements Comparable{
     private final String title;
     private final int edition;
     private final double price;
-    private List<String> book;
+    private ArrayList<String> book;
     private ArrayList<Author> authors;
     
     public Book(String isbn, String title, int edition, double price)
@@ -43,17 +44,21 @@ public class Book implements Comparable{
     
     public Book(String s){
         init();
-        book = Arrays.asList(s.split(";", 5));
+        book.addAll(Arrays.asList(s.split(";", 10)));
         this.isbn = book.get(0);
         this.title = book.get(1);
         this.edition = Integer.decode(book.get(2));
         this.price = Double.valueOf(book.get(3));
+        if(book.size()>4) 
+            for (String z : book.subList(4, book.size())) {
+                authors.add(new Author(z));
+        }
         
     }
     
     private void init(){
         book = new ArrayList<>();
-        authors = new ArrayList();
+        authors = new ArrayList<>();
     }
     
     public String getISBN()
@@ -79,6 +84,7 @@ public class Book implements Comparable{
     public void addAuthor(Author author)
     {
        authors.add(author);
+       this.book.add(author.getName()); //This isn't working
        
     }
     public ArrayList<Author> getAuthors()
@@ -88,24 +94,28 @@ public class Book implements Comparable{
     
     @Override
     public String toString(){
-        StringBuilder book = new StringBuilder();
-        for(int i = 0; i < this.book.size(); i++){
+        StringBuilder book = new StringBuilder(BookValue.ISBN + ": " + this.book.get(0));
+        for(int i = 1; i < this.book.size(); i++){
             try{
-                book.append(BookValue.values()[i]).append(": ").append(this.book.get(i)).append(";");
+                book.append(";").append(BookValue.values()[i]).append(": ").append(this.book.get(i));
             }
-            catch (NullPointerException nul) {
-                System.out.println("No Author registered");
+            catch (ArrayIndexOutOfBoundsException moreThanOneAuthor) {
+                int c = book.lastIndexOf(";"); 
+                book.deleteCharAt(c);
+                book.append(", ").append(this.book.get(i));
             }
         }
         return book.toString();
-        //this.title
-        //this.edition
-        //is.price
     }
     
     @Override
     public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (this.equals(o)) return 0;
+        if(o instanceof Book){
+            return this.title.compareTo(((Book) o).title);
+        } 
+        else
+            throw new UnsupportedOperationException("Not a Book object");
     }
     
     public enum BookValue{
