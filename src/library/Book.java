@@ -37,6 +37,16 @@ public class Book implements Comparable{
         this.price = price;
     }
     
+    public Book(String s){
+        String [] book = s.split(",", 4);
+        
+        this.isbn = book[0];
+        this.title = book[1];
+        this.edition = Integer.decode(book[2]);
+        this.price = Double.valueOf(book[3]);
+        
+    }
+    
     public String getISBN()
     {
         return this.isbn;

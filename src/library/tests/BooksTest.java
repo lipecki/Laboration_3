@@ -1,7 +1,12 @@
 package library.tests;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import library.Author;
+import library.Book;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,9 +31,14 @@ import library.Author;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class BooksTest {
-    public BooksTest(){
+    public BooksTest() throws FileNotFoundException{
         
-        
+        File inputFile;
+        Scanner readFile;
+        inputFile = new File("src/library/Filename.txt");
+        readFile = new Scanner(inputFile);
+        ArrayList<Book> books = new ArrayList();
+        books.add(new Book(readFile.nextLine()));
         
         Author Johan = new Author("Johan Lipecki");
         System.out.println(Johan.firstname());

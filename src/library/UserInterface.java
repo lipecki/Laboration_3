@@ -15,8 +15,11 @@
  */
 package library;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import library.tests.BooksTest;
 
 /**
@@ -24,25 +27,31 @@ import library.tests.BooksTest;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class UserInterface {
-
-    private String menu;
     
-    UserInterface(){
+    UserInterface() throws FileNotFoundException{
+         
+
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         
-        //BooksTest test = new BooksTest();
+        BooksTest test = new BooksTest();
+        
         menu();
         
     }
     
+    public void addBook(Book book){
+        
+    }
+    
     public static void menu(){
-        for(Enum e: Menu.values()) System.out.println(e);
+        System.out.println("Menu");
+        for(Enum e: Menu.values()) System.out.println("\t" + e);
     }
     
     public enum Menu {
