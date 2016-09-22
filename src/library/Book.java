@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Book implements Comparable{
+public class Book implements Comparable<Book>{
 
     private final String isbn;
     private final String title;
@@ -35,25 +35,27 @@ public class Book implements Comparable{
     
     public Book(String isbn, String title, int edition, double price)
     {
-        init();
-        book.add(0, this.isbn = isbn);
-        book.add(1, this.title = title);
-        book.add(2, Integer.toString(this.edition = edition));
-        book.add(3, Double.toString(this.price = price));
+        init(isbn, title, edition, price);        
+        this.isbn = isbn;
+        this.title = title;
+        this.edition = edition;
+        this.price = price;
     }
     
-    public Book(String s){
+    private void init(String isbn, String title, int edition, double price){
         init();
-        book.addAll(Arrays.asList(s.split(";", 10)));
-        this.isbn = book.get(0);
-        this.title = book.get(1);
-        this.edition = Integer.decode(book.get(2));
-        this.price = Double.valueOf(book.get(3));
-        if(book.size()>4) 
-            for (String z : book.subList(4, book.size())) {
-                authors.add(new Author(z));
-        }
-        
+        book.add(0,isbn);
+        book.add(1,title);
+        book.add(2, Integer.toString(edition));
+        book.add(3, Double.toString(price));
+    }
+    
+    /**
+     * Placeholder book
+     */
+    public Book(){
+        this(null,null,Integer.MAX_VALUE,Double.NaN);
+        init();
     }
     
     private void init(){
@@ -109,13 +111,17 @@ public class Book implements Comparable{
     }
     
     @Override
-    public int compareTo(Object o) {
-        if (this.equals(o)) return 0;
-        if(o instanceof Book){
-            return this.title.compareTo(((Book) o).title);
-        } 
-        else
-            throw new UnsupportedOperationException("Not a Book object");
+    public int compareTo(Book o) throws NullPointerException {
+        if (this == o) return 0;
+        try{
+            return this.title.compareTo(((Book) o).getTitle());
+        }catch (NullPointerException nul){
+            try{
+                return this.edition - o.getEdition();
+            } catch (NullPointerException Nul){
+                return this.edition;
+            }
+        }
     }
     
     public enum BookValue{

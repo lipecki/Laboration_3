@@ -4,6 +4,7 @@ package library.tests;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import library.Author;
 import library.Book;
@@ -39,7 +40,7 @@ public class BooksTest {
         readFile = new Scanner(inputFile);
         ArrayList<Book> books = new ArrayList();
         do{
-            books.add(new Book(readFile.nextLine()));
+            books.add(convertStringToBook(readFile.nextLine()));
         }while(readFile.hasNext());
         
         Author Johan = new Author("Viggo Lundén");
@@ -48,11 +49,35 @@ public class BooksTest {
         //System.out.println(bok);
         //books.set(0, bok);
         
+        System.out.format("Compare the book: %d", books.get(0).compareTo(new Book()));
+        
         System.out.println("\nBöcker:");
         for(Book b: books) {
             System.out.println("---------------");
             for(String s: b.toString().split(";"))
                     System.out.println(s);
         }
+    }
+    
+        /**
+     * Parses Book string s 
+     * @return Book    
+     * @param s 
+     */
+    public Book convertStringToBook(String s) throws IndexOutOfBoundsException {
+        ArrayList<String> book= new ArrayList();
+        book.addAll(Arrays.asList(s.split(";", 10)));
+        if(book.size()<4){
+            System.err.println("Too few parameters in list");
+            throw new IndexOutOfBoundsException();
+        }
+        Book thisOne = new Book(book.get(0),book.get(1),Integer.decode(book.get(2)),Double.valueOf(book.get(3)));
+        
+        if(book.size()>4) 
+            for (String z : book.subList(4, book.size())) {
+                thisOne.addAuthor(new Author(z));
+        }
+        return thisOne;
+        
     }
 }
