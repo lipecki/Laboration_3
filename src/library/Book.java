@@ -51,7 +51,8 @@ public class Book implements Comparable<Book>{
     }
     
     /**
-     * Placeholder book
+     * Placeholder book,
+     * can be compared and thus also sorted.
      */
     public Book(){
         this(null,null,Integer.MAX_VALUE,Double.NaN);
