@@ -97,6 +97,19 @@ public class Book implements Comparable<Book>{
     
     @Override
     public String toString(){
+        StringBuilder book = new StringBuilder(this.book.get(0));
+        for(int i = 1; i < this.book.size(); i++){
+            if(i < 5) book.append(";").append(this.book.get(i));
+            else {
+                int c = book.lastIndexOf(";"); 
+                book.deleteCharAt(c);
+                book.append(", ").append(this.book.get(i));
+            }
+        }
+        return book.toString();
+    }
+    
+    public String toTable(){
         StringBuilder book = new StringBuilder(BookValue.ISBN + ": " + this.book.get(0));
         for(int i = 1; i < this.book.size(); i++){
             try{

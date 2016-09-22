@@ -17,6 +17,7 @@ package library;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -32,11 +33,11 @@ public class UserInterface {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws FileNotFoundException, IOException{
         // TODO code application logic here
         
         BooksTest test = new BooksTest();
-        
+         
         //menu();
         
     }

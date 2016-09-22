@@ -3,8 +3,12 @@ package library.tests;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import library.Author;
 import library.Book;
@@ -34,11 +38,12 @@ import static library.UserInterface.*;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class BooksTest {
-    public BooksTest() throws FileNotFoundException{
+    public BooksTest() throws FileNotFoundException, IOException{
         
         File inputFile;
         Scanner readFile;
         inputFile = new File("src/library/Filename.txt");
+        File outputFile = inputFile;
         readFile = new Scanner(inputFile);
         ArrayList<Book> books = new ArrayList();
         do{
@@ -56,8 +61,15 @@ public class BooksTest {
         System.out.println("\nBöcker:");
         for(Book b: books) {
             System.out.println("---------------");
-            for(String s: b.toString().split(";"))
+            for(String s: b.toTable().split(";"))
                     System.out.println(s);
         }
+        FileWriter fw = new FileWriter("src/library/newFile.txt");
+        //FileWriter fw = new FileWriter(outputFile.getPath());
+        
+        for(Book b: books)
+            fw.write(b.toString() + "\n");
+        fw.close();
+        
     }
 }
