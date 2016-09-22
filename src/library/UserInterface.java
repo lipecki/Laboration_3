@@ -29,26 +29,31 @@ import library.tests.BooksTest;
  */
 public class UserInterface {
 
+    private static void printMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    Scanner userSays;
+    
+    UserInterface(){
+        userSays = new Scanner(System.in);
+    }
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        // TODO code application logic here
         
-        BooksTest test = new BooksTest();
+        
+        //BooksTest test = new BooksTest();
          
-        //menu();
+        printMenu();
         
     }
     
-    public static void menu(){
-        System.out.println("Menu");
-        for(Enum e: Menu.values()) System.out.println("\t" + e);
-    }
+
     
-    public enum Menu {
-    ShowLibrary, SearchForBook, SearchByAuthor ;
+    public static void openLibrary(){
+        
     }
     
     /**

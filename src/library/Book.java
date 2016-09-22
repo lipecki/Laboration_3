@@ -15,6 +15,7 @@
  */
 package library;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ import java.util.List;
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book>, Serializable{
 
     private final String isbn;
     private final String title;

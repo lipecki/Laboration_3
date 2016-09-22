@@ -16,6 +16,7 @@
 
 package library;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,7 +24,7 @@ import java.util.Arrays;
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Author {
+public class Author implements Serializable {
     private final String lastname;
     private final String firstname;
     private ArrayList<String> names;
