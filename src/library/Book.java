@@ -101,8 +101,6 @@ public class Book implements Comparable<Book>{
         for(int i = 1; i < this.book.size(); i++){
             if(i < 5) book.append(";").append(this.book.get(i));
             else {
-                int c = book.lastIndexOf(";"); 
-                book.deleteCharAt(c);
                 book.append(", ").append(this.book.get(i));
             }
         }
