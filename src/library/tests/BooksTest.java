@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import library.Author;
 import library.Book;
+import static library.UserInterface.*;
+//import static library.UserInterface.convertStringToBook;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -57,27 +59,5 @@ public class BooksTest {
             for(String s: b.toString().split(";"))
                     System.out.println(s);
         }
-    }
-    
-        /**
-     * Parses Book string s 
-     * @return Book    
-     * @param s 
-     */
-    public Book convertStringToBook(String s) throws IndexOutOfBoundsException {
-        ArrayList<String> book= new ArrayList();
-        book.addAll(Arrays.asList(s.split(";", 10)));
-        if(book.size()<4){
-            System.err.println("Too few parameters in list");
-            throw new IndexOutOfBoundsException();
-        }
-        Book thisOne = new Book(book.get(0),book.get(1),Integer.decode(book.get(2)),Double.valueOf(book.get(3)));
-        
-        if(book.size()>4) 
-            for (String z : book.subList(4, book.size())) {
-                thisOne.addAuthor(new Author(z));
-        }
-        return thisOne;
-        
     }
 }

@@ -27,25 +27,17 @@ import library.tests.BooksTest;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class UserInterface {
-    
-    UserInterface() throws FileNotFoundException{
-         
-
-    }
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException{
         // TODO code application logic here
         
         BooksTest test = new BooksTest();
         
         //menu();
-        
-    }
-    
-    public void addBook(Book book){
         
     }
     
@@ -56,6 +48,28 @@ public class UserInterface {
     
     public enum Menu {
     ShowLibrary, SearchForBook, SearchByAuthor ;
+    }
+    
+    /**
+     * Parses Book string s 
+     * @return Book    
+     * @param s 
+     */
+    public static Book convertStringToBook(String s) throws IndexOutOfBoundsException {
+        ArrayList<String> book= new ArrayList();
+        book.addAll(Arrays.asList(s.split(";", 10)));
+        if(book.size()<4){
+            System.err.println("Too few parameters in list");
+            throw new IndexOutOfBoundsException();
+        }
+        Book thisOne = new Book(book.get(0),book.get(1),Integer.decode(book.get(2)),Double.valueOf(book.get(3)));
+        
+        if(book.size()>4) 
+            for (String z : book.subList(4, book.size())) {
+                thisOne.addAuthor(new Author(z));
+        }
+        return thisOne;
+        
     }
     
 }
