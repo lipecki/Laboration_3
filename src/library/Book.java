@@ -15,27 +15,62 @@
  */
 package library;
 
+<<<<<<< HEAD
 import java.io.Serializable;
+=======
+import java.io.*;
+>>>>>>> origin/master
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
+<<<<<<< HEAD
 public class Book implements Comparable, Serializable{
+=======
+public class Book implements Comparable<Book>, Serializable{
+>>>>>>> origin/master
 
     private final String isbn;
     private final String title;
     private final int edition;
     private final double price;
+    private ArrayList<String> book;
     private ArrayList<Author> authors;
     
     public Book(String isbn, String title, int edition, double price)
     {
+        init(isbn, title, edition, price);        
         this.isbn = isbn;
         this.title = title;
         this.edition = edition;
         this.price = price;
+        authors = new ArrayList<>();
+    }
+    
+    private void init(String isbn, String title, int edition, double price){
+        init();
+        book.add(0,isbn);
+        book.add(1,title);
+        book.add(2, Integer.toString(edition));
+        book.add(3, Double.toString(price));
+    }
+    
+    /**
+     * Placeholder book,
+     * can be compared and thus also sorted.
+     */
+    public Book(){
+        this(null,null,Integer.MAX_VALUE,Double.NaN);
+        init();
+    }
+    
+    private void init(){
+        book = new ArrayList<>();
         authors = new ArrayList<>();
     }
     
@@ -61,7 +96,9 @@ public class Book implements Comparable, Serializable{
     
     public void addAuthor(Author author)
     {
-        authors.add(author);
+       authors.add(author);
+       this.book.add(author.getName()); //This isn't working
+       
     }
     
     public ArrayList<Author> getAuthors()
@@ -69,12 +106,56 @@ public class Book implements Comparable, Serializable{
         return (ArrayList<Author>) authors.clone();
     }
     
+    @Override
+    public String toString(){
+        StringBuilder book = new StringBuilder(this.book.get(0));
+        for(int i = 1; i < this.book.size(); i++){
+            if(i < 5) book.append(";").append(this.book.get(i));
+            else {
+                book.append(", ").append(this.book.get(i));
+            }
+        }
+        return book.toString();
+    }
+    
+    public String toTable(){
+        StringBuilder book = new StringBuilder(BookValue.ISBN + ": " + this.book.get(0));
+        for(int i = 1; i < this.book.size(); i++){
+            try{
+                book.append(";").append(BookValue.values()[i]).append(": ").append(this.book.get(i));
+            }
+            catch (ArrayIndexOutOfBoundsException moreThanOneAuthor) {
+                int c = book.lastIndexOf(";"); 
+                book.deleteCharAt(c);
+                book.append(", ").append(this.book.get(i));
+            }
+        }
+        return book.toString();
+    }
     
     @Override
+<<<<<<< HEAD
     public int compareTo(Object o) {
         Book otherBook = (Book)o;
         return title.compareTo((String)otherBook.getTitle());
         
+=======
+    public int compareTo(Book o) throws NullPointerException {
+        if (this == o) return 0;
+        try{
+            return this.title.compareTo(((Book) o).getTitle());
+        }catch (NullPointerException nul){
+            try{
+                return this.edition - o.getEdition();
+            } catch (NullPointerException Nul){
+                return this.edition;
+            }
+        }
+    }
+    
+    public enum BookValue{
+        ISBN, Title, Edition, Price, Author;
+>>>>>>> origin/master
     }
     
 }
