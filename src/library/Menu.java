@@ -14,10 +14,12 @@ import java.util.Scanner;
 
 public class Menu {
 
-	private Scanner userSays;
+    private CollectionOfBooks books;
+    private Scanner userSays;
 
     public Menu() {
     	userSays = new Scanner(System.in);
+        books = FileHelper.read();
     }
     
     /**

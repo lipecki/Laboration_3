@@ -15,21 +15,14 @@
  */
 package library;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.Collections;
-import java.io.*;
-import static library.FileHelper.read;
-import static library.FileHelper.write;
-=======
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import static library.FileHelper.read;
 import library.tests.BooksTest;
->>>>>>> origin/master
 
 /**
  *
@@ -49,14 +42,6 @@ public class UserInterface {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        
-        
-        //BooksTest test = new BooksTest();
-         
-        printMenu();
-        
-    }
     
 
     
@@ -69,7 +54,6 @@ public class UserInterface {
      * @return Book    
      * @param s 
      */
-<<<<<<< HEAD
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         menu();
     }
@@ -77,7 +61,7 @@ public class UserInterface {
     public static void menu() throws FileNotFoundException, IOException, ClassNotFoundException{
         CollectionOfBooks coll = read();
         System.out.println("");
-=======
+    }
     public static Book convertStringToBook(String s) throws IndexOutOfBoundsException {
         ArrayList<String> book= new ArrayList();
         book.addAll(Arrays.asList(s.split(";", 10)));
@@ -93,7 +77,6 @@ public class UserInterface {
         }
         return thisOne;
         
->>>>>>> origin/master
     }
     
 }

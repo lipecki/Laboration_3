@@ -15,11 +15,8 @@
  */
 package library;
 
-<<<<<<< HEAD
 import java.io.Serializable;
-=======
 import java.io.*;
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -29,11 +26,7 @@ import java.util.List;
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-<<<<<<< HEAD
-public class Book implements Comparable, Serializable{
-=======
 public class Book implements Comparable<Book>, Serializable{
->>>>>>> origin/master
 
     private final String isbn;
     private final String title;
@@ -133,13 +126,6 @@ public class Book implements Comparable<Book>, Serializable{
         return book.toString();
     }
     
-    @Override
-<<<<<<< HEAD
-    public int compareTo(Object o) {
-        Book otherBook = (Book)o;
-        return title.compareTo((String)otherBook.getTitle());
-        
-=======
     public int compareTo(Book o) throws NullPointerException {
         if (this == o) return 0;
         try{
@@ -155,7 +141,6 @@ public class Book implements Comparable<Book>, Serializable{
     
     public enum BookValue{
         ISBN, Title, Edition, Price, Author;
->>>>>>> origin/master
     }
     
 }

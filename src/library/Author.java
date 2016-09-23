@@ -16,25 +16,19 @@
 
 package library;
 
-<<<<<<< HEAD
 import java.io.Serializable;
-=======
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
->>>>>>> origin/master
 
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class Author implements Serializable {
-<<<<<<< HEAD
-=======
     private final String lastname;
     private final String firstname;
     private ArrayList<String> names;
->>>>>>> origin/master
     private final String name;
     
     public Author(String name)
