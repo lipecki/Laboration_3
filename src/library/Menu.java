@@ -96,7 +96,20 @@ public class Menu {
     }
 
     private void showLibrary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] library = {
+            "--\t--Library--\t--\n",
+            "Author\t",
+            "Title\t",
+            "Edition\t",
+            "Price\t",
+            "ISBM\t"
+        };
+        for (String s : library)
+        {
+            System.out.print(s);
+        }
+        
+        
     }
 
     private void titleSearch() {
