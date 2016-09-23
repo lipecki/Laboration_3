@@ -17,6 +17,12 @@
  */
 package library;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.io.*;
+import static library.FileHelper.read;
+import static library.FileHelper.write;
+
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
@@ -26,8 +32,13 @@ public class UserInterface {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
+        menu();
+    }
+    
+    public static void menu() throws FileNotFoundException, IOException, ClassNotFoundException{
+        CollectionOfBooks coll = read();
+        System.out.println("");
     }
     
 }

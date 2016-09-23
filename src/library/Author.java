@@ -16,11 +16,13 @@
 
 package library;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Author {
+public class Author implements Serializable {
     private final String name;
     public Author(String name)
     {

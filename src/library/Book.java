@@ -15,13 +15,14 @@
  */
 package library;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
-public class Book implements Comparable{
+public class Book implements Comparable, Serializable{
 
     private final String isbn;
     private final String title;
@@ -35,6 +36,7 @@ public class Book implements Comparable{
         this.title = title;
         this.edition = edition;
         this.price = price;
+        authors = new ArrayList<>();
     }
     
     public String getISBN()
@@ -61,6 +63,7 @@ public class Book implements Comparable{
     {
         authors.add(author);
     }
+    
     public ArrayList<Author> getAuthors()
     {
         return (ArrayList<Author>) authors.clone();
