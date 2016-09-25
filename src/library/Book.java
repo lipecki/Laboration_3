@@ -15,6 +15,7 @@
  */
 package library;
 
+import java.io.Serializable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,7 @@ public class Book implements Comparable<Book>, Serializable{
         this.title = title;
         this.edition = edition;
         this.price = price;
+        authors = new ArrayList<>();
     }
     
     private void init(String isbn, String title, int edition, double price){
@@ -91,6 +93,7 @@ public class Book implements Comparable<Book>, Serializable{
        this.book.add(author.getName()); 
        
     }
+    
     public ArrayList<Author> getAuthors()
     {
         return (ArrayList<Author>) authors.clone();
@@ -108,7 +111,6 @@ public class Book implements Comparable<Book>, Serializable{
         return book.toString();
     }
     
-    @Override
     public int compareTo(Book o) throws NullPointerException {
         if (this == o) return 0;
         try{

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import static library.FileHelper.read;
 import library.tests.BooksTest;
 
 /**
@@ -38,7 +39,7 @@ public class UserInterface {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException{
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
         
         BooksTest test = new BooksTest();
@@ -47,15 +48,20 @@ public class UserInterface {
         CollectionOfBooks books = test.BooksTest();
         menu.theShowMustGoOn(books);
         
+        menu();
+        
     }
-    
 
-    
     public static void openLibrary(){
         
     }
     
-    /**
+    public static void menu() throws FileNotFoundException, IOException, ClassNotFoundException{
+        CollectionOfBooks coll = read();
+        System.out.println("");
+    }
+    
+     /**
      * Parses Book string s 
      * @return Book    
      * @param s 

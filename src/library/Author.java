@@ -16,14 +16,11 @@
 
 package library;
 
+import java.io.Serializable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- *
- * @author Johan Lipecki <lipecki@kth.se>
- */
 public class Author implements Serializable {
     private final String lastname;
     private final String firstname;

@@ -16,10 +16,12 @@ import library.Search.*;
 
 public class Menu {
 
-	private Scanner userSays;
+    private CollectionOfBooks books;
+    private Scanner userSays;
 
     public Menu() {
     	userSays = new Scanner(System.in);
+        books = FileHelper.read();
     }
     
     /**
@@ -75,6 +77,7 @@ public class Menu {
 
     private void removeBook(CollectionOfBooks books) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     private void showLibrary(CollectionOfBooks books) {
