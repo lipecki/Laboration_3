@@ -52,13 +52,13 @@ public class Menu {
     }
 
     private static void printMenu(){
-        String [] menu = {""
-                + "------Menu------",""
-                + "A: Add Book",""
-                + "R: Remove Book",""
-                + "S: Search",""
-                + "L: Show Library",""
-                + "E: End Of Line"};
+        String [] menu = {
+                "\n------Menu------",
+                "A: Add Book",
+                "R: Remove Book",
+                "S: Search",
+                "L: Show Library",
+                "E: End Of Line"};
         for(String s: menu) System.out.println(s);
     }
 
@@ -99,10 +99,13 @@ public class Menu {
         ArrayList<String> bookParts= new ArrayList();
         bookParts.addAll(Arrays.asList(book.split(";", 10)));
         
-        StringBuilder string = new StringBuilder(Book.BookValue.ISBN + ": " + bookParts.get(0));
+        StringBuilder string = new StringBuilder(Book.BookValue.ISBN + ": " + bookParts.get(0) + "\n");
         for(int i = 1; i < bookParts.size(); i++){
-            if(i>4) string.append(", ").append(bookParts.get(i));
-            else string.append(Book.BookValue.values()[i]).append(": ").append(bookParts.get(i));
+            if(i>4) string.append(", ").append(bookParts.get(i)).append("\n");
+            else {
+                string.append(Book.BookValue.values()[i]).append(": ");
+                string.append(bookParts.get(i)).append("\n");
+            }
         }
         return string.toString();
     }
