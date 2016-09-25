@@ -34,7 +34,7 @@ public class Menu {
         while(select != 'E'){
             printMenu();
             selection = userSays.nextLine();
-            select = selection.toUpperCase().charAt(0);
+            if(!selection.isEmpty()) select = selection.toUpperCase().charAt(0);
             
             switch(select) {
                 case 'A':   addBook(books); break;
@@ -63,12 +63,12 @@ public class Menu {
     }
 
     private void search(CollectionOfBooks books) {
-        ArrayList<Book> listOfBooks;
+        ArrayList<Book> listOfBooks = null;
         
         Search find = new Search(books);
         //char c = find.promptUser();
         listOfBooks = find.search(books); 
-        System.out.print(booksToTable(listOfBooks));
+        if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
         
     }
     private void addBook(CollectionOfBooks books) {

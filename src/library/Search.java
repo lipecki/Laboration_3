@@ -39,6 +39,7 @@ public class Search {
         printSearchMenu();
         String selection;
         selection = userSays.nextLine();        
+        if(selection.isEmpty()) selection = String.valueOf(promptUser());
         return selection.toUpperCase().charAt(0);
     }
     
@@ -65,19 +66,24 @@ public class Search {
     
     private ArrayList<Book> getQuery(char select){
         //ArrayList<Book> result;
-        System.out.println("Please type query: ");
+        while(result == null){
             switch(select) {
                 case 'T':   result = getResults(searchValues.Title); break;
                 case 'I':   result = getResults(searchValues.ISBN); break; 
                 case 'A':   result = getResults(searchValues.Author); break;
                 case 'N':   result = getResults(null); break;
                 default:    System.out.println("Sorry, I must have misread. Please select again!");
+                            String selection = userSays.nextLine();
+                            select = selection.toUpperCase().charAt(0);
+                            
             }
-            return result;
+        }
+        return result;
     }
     
     private ArrayList<Book> getResults(searchValues searchType){
         //ArrayList<Book> result;
+        System.out.println("Please type query: ");
         String search = userSays.nextLine();
         switch(searchType){
             

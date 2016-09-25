@@ -77,7 +77,7 @@ public class UserInterface {
         
         if(book.size()>4) 
             for (String z : book.subList(4, book.size())) {
-                thisOne.addAuthor(new Author(z));
+                thisOne.addAuthor(new Author(z.trim()));
         }
         return thisOne;
         
