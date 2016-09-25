@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 import library.Author;
 import library.Book;
+import library.CollectionOfBooks;
 import static library.UserInterface.*;
 //import static library.UserInterface.convertStringToBook;
 
@@ -38,7 +39,7 @@ import static library.UserInterface.*;
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class BooksTest {
-    public BooksTest() throws FileNotFoundException, IOException{
+    public CollectionOfBooks BooksTest() throws FileNotFoundException, IOException{
         
         File inputFile;
         Scanner readFile;
@@ -56,20 +57,27 @@ public class BooksTest {
         //System.out.println(bok);
         //books.set(0, bok);
         
-        System.out.format("Compare the book: %d", books.get(0).compareTo(new Book()));
+        System.out.format("Compare the first book to a placeholder book: \n%d\n", books.get(0).compareTo(new Book()));
         
         System.out.println("\nBöcker:");
         for(Book b: books) {
             System.out.println("---------------");
-            for(String s: b.toTable().split(";"))
+            for(String s: b.toString().split(";"))
                     System.out.println(s);
         }
+        
         FileWriter fw = new FileWriter("src/library/newFile.txt");
         //FileWriter fw = new FileWriter(outputFile.getPath());
         
         for(Book b: books)
             fw.write(b.toString() + "\n");
         fw.close();
+        
+        CollectionOfBooks library = new CollectionOfBooks();
+        for(Book b: books)
+            library.addBook(b);
+        
+        return library;
         
     }
 }

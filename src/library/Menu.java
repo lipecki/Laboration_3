@@ -10,7 +10,9 @@ package library;
  *  • Avsluta och skriva all information till fil.
  */
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import library.Search.*;
 
 public class Menu {
 
@@ -23,21 +25,24 @@ public class Menu {
     /**
      *The menu loop starts running
      */
-    public void theShowMustGoOn(){
+    public void theShowMustGoOn(CollectionOfBooks books){
         char select = ' ';
         String selection;
         
-        while(select != 'Q'){
+        while(select != 'E'){
             printMenu();
             selection = userSays.nextLine();
             select = selection.toUpperCase().charAt(0);
             
             switch(select) {
-                case 'A':   addBook(); break;
-                case 'R':   removeBook(); break;
-                case 'S':   retrieveQuery(); break;
-                case 'L':   showLibrary(); break;
-                case 'E':   System.out.println("End of line"); for(int i = 0; i < 30; i++) System.out.println(""); break;
+                case 'A':   addBook(books); break;
+                case 'R':   removeBook(books); break;
+                case 'S':   search(books); break;
+                case 'L':   showLibrary(books); break;
+                case 'E':   for(int i = 0; i < 30; i++) System.out.println("");
+                            System.out.println("End of line");
+                            break;
+                            
                 default:    System.out.println("Sorry, I must have misread. Please select again!");
             }
             
@@ -54,58 +59,57 @@ public class Menu {
                 + "E: End Of Line"};
         for(String s: menu) System.out.println(s);
     }
-    
-    private static void printSearchMenu(){
-        String [] menu = {""
-                + "--\t--Search Menu--\t--",""
-                + "T: Title search"
-                + "I: ISBN search"
-                + "A: Author search"
-                + "N: Nevermind, Please take me back!"};
-        for(String s: menu) System.out.println("\t" + s);
+
+    private void search(CollectionOfBooks books) {
+        ArrayList<Book> listOfBooks;
+        
+        Search find = new Search(books);
+        //char c = find.promptUser();
+        listOfBooks = find.search(books); 
+        System.out.print(booksToTable(listOfBooks));
+        
+    }
+    private void addBook(CollectionOfBooks books) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void retrieveQuery() {
-        char select = ' ';
-        String selection;
-        ArrayList<Book> books = new ArrayList();
-        
-        while(select != 'N'){
-            printSearchMenu();
-            selection = userSays.nextLine();
-            select = selection.toUpperCase().charAt(0);
-            
-            switch(select) {
-                case 'T':   titleSearch(); break;
-                case 'I':   isbnSearch(); break;
-                case 'A':   authorSearch(); break;
-                case 'N':   break;
-                default:    System.out.println("Sorry, I must have misread. Please select again!");
-            }
+    private void removeBook(CollectionOfBooks books) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showLibrary(CollectionOfBooks books) {
+        String[] library = {
+            "--\t--Library--\t--\n",
+            "Author\t",
+            "Title\t",
+            "Edition\t",
+            "Price\t",
+            "ISBN\t"
+        };
+        for (String s : library)
+        {
+            System.out.print(s); 
         }
     }
-
-    private void addBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private String bookStringToTable(String book){
+        ArrayList<String> bookParts= new ArrayList();
+        bookParts.addAll(Arrays.asList(book.split(";", 10)));
+        
+        StringBuilder string = new StringBuilder(Book.BookValue.ISBN + ": " + bookParts.get(0));
+        for(int i = 1; i < bookParts.size(); i++){
+            if(i>4) string.append(", ").append(bookParts.get(i));
+            else string.append(Book.BookValue.values()[i]).append(": ").append(bookParts.get(i));
+        }
+        return string.toString();
     }
-
-    private void removeBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void showLibrary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void titleSearch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void isbnSearch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void authorSearch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private String booksToTable(ArrayList<Book> books){
+        StringBuilder book = new StringBuilder();
+        for(Book b: books) {
+            book.append("---------------\n");
+            book.append(bookStringToTable(b.toString()));
+        }
+        return book.toString();
     }
 }

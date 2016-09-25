@@ -29,9 +29,6 @@ import library.tests.BooksTest;
  */
 public class UserInterface {
 
-    private static void printMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     Scanner userSays;
     
     UserInterface(){
@@ -44,9 +41,11 @@ public class UserInterface {
     public static void main(String[] args) throws FileNotFoundException, IOException{
         
         
-        //BooksTest test = new BooksTest();
+        BooksTest test = new BooksTest();
          
-        printMenu();
+        Menu menu = new Menu();
+        CollectionOfBooks books = test.BooksTest();
+        menu.theShowMustGoOn(books);
         
     }
     
