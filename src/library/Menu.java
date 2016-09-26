@@ -77,11 +77,16 @@ public class Menu {
         
     }
     private void addBook(CollectionOfBooks books) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     private void removeBook(CollectionOfBooks books) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("\nPlease enter ISBN or book to remove: ");
+        String isbn = userSays.nextLine();
+        ArrayList<Book> buks = books.getBooksByISBN(isbn);
+        if(buks != null)
+            for(Book b: buks) 
+                books.removeBook(b);
 
     }
 
