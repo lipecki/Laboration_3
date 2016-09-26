@@ -111,9 +111,13 @@ public class Menu {
         outPut.println("Title:");
         title = userSays.readLine();
         outPut.println("Edition:");
-        edition = Integer.parseInt(userSays.readLine());
+        String s_edition = userSays.readLine();
+        if (s_edition.trim().equals("")) edition = 0;
+        else edition = Integer.parseInt(s_edition);
         outPut.println("Price:");
-        price = Double.parseDouble(userSays.readLine());
+        String s_price = userSays.readLine();
+        if (s_price.trim().equals("")) price = 0;
+        else price = Double.parseDouble(s_price);
         int authorCount = 0;
         while (true)
         {
