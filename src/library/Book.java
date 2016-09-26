@@ -35,6 +35,13 @@ public class Book implements Comparable<Book>, Serializable{
     private ArrayList<String> book;
     private ArrayList<Author> authors;
     
+    /**
+     * 
+     * @param isbn
+     * @param title
+     * @param edition
+     * @param price 
+     */
     public Book(String isbn, String title, int edition, double price)
     {
         init(isbn, title, edition, price);        
@@ -44,7 +51,13 @@ public class Book implements Comparable<Book>, Serializable{
         this.price = price;
         authors = new ArrayList<>();
     }
-    
+    /**
+     * 
+     * @param isbn
+     * @param title
+     * @param edition
+     * @param price 
+     */
     private void init(String isbn, String title, int edition, double price){
         init();
         book.add(0,isbn);
@@ -62,6 +75,9 @@ public class Book implements Comparable<Book>, Serializable{
         init();
     }
     
+    /**
+     * 
+     */
     private void init(){
         book = new ArrayList<>();
         authors = new ArrayList<>();
@@ -87,6 +103,10 @@ public class Book implements Comparable<Book>, Serializable{
         return this.price;
     }
     
+    /**
+     * 
+     * @param author 
+     */
     public void addAuthor(Author author)
     {
        authors.add(author);

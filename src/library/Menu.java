@@ -12,6 +12,7 @@ package library;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import library.Book.BookValue;
 import library.Search.*;
 
 public class Menu {
@@ -81,18 +82,16 @@ public class Menu {
     }
 
     private void showLibrary(CollectionOfBooks books) {
-        String[] library = {
-            "--\t--Library--\t--\n",
-            "Author\t",
-            "Title\t",
-            "Edition\t",
-            "Price\t",
-            "ISBN\t"
-        };
-        for (String s : library)
-        {
-            System.out.print(s); 
-        }
+            System.out.print("--\t--Library--\t--\n");
+            for(Book.BookValue v: BookValue.values()){
+                System.out.print(v + "\t");
+                if(v.equals(Book.BookValue.Title)) System.out.print("\t");
+            }
+            for(Book b: books.getBooks()){
+                System.out.println("");
+                for(String s: b.toString().split(";"))
+                    System.out.print(s + "\t");
+            }
     }
     
     private String bookStringToTable(String book){
