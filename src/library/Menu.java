@@ -108,16 +108,20 @@ public class Menu {
         
         outPut.println("ISBN:");
         isbn = userSays.readLine();
+        
         outPut.println("Title:");
         title = userSays.readLine();
+        
         outPut.println("Edition:");
         String s_edition = userSays.readLine();
         if (s_edition.trim().equals("")) edition = 0;
         else edition = Integer.parseInt(s_edition);
+        
         outPut.println("Price:");
         String s_price = userSays.readLine();
         if (s_price.trim().equals("")) price = 0;
         else price = Double.parseDouble(s_price);
+        
         int authorCount = 0;
         while (true)
         {
@@ -131,6 +135,7 @@ public class Menu {
         for (Author a : authors)
             book.addAuthor(a);
         books.addBook(book);
+        
         FileHelper.write(books, "books.ser");
     }
 

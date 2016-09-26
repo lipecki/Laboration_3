@@ -71,7 +71,7 @@ public class Search {
                 case 'T':   result = getResults(searchValues.Title); break;
                 case 'I':   result = getResults(searchValues.ISBN); break; 
                 case 'A':   result = getResults(searchValues.Author); break;
-                case 'N':   result = getResults(null); break;
+                case 'N':   result = new ArrayList<>(); break;
                 default:    System.out.println("Sorry, I must have misread. Please select again!");
                             String selection = userSays.nextLine();
                             select = selection.toUpperCase().charAt(0);

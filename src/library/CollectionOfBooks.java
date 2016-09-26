@@ -86,7 +86,7 @@ public class CollectionOfBooks implements Serializable {
         ArrayList<Book> books_by_title = new ArrayList<>();
         for (Book b : books)
         {
-            if (b.getTitle().trim().toLowerCase().contains(title.toLowerCase())) books_by_title.add(b);
+            if (b.getTitle().trim().toLowerCase().contains(title.trim().toLowerCase())) books_by_title.add(b);
         }
         Collections.sort(books_by_title);
         return books_by_title;
@@ -131,7 +131,7 @@ public class CollectionOfBooks implements Serializable {
                 for(String name: a.getName().trim().split(" ")){
                     //remove csv-chars accidentally left
                     name = name.replace(",","").replace(";","");
-                    if(name.equalsIgnoreCase(author)) books_by_author.add(b);
+                    if(name.equalsIgnoreCase(author) || name.toLowerCase().contains(author.toLowerCase())) books_by_author.add(b);
                 }
             }
             if (authors.contains(new Author(author)) || authorNames.contains(author)) books_by_author.add(b);
