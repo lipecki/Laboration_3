@@ -17,16 +17,23 @@
 package library;
 
 import java.io.Serializable;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents an author, with first and last name
+ * @author Viggo Lundén <vlunden@kth.se>, Johan Lipecki <lipecki@kth.se>
+ */
 public class Author implements Serializable {
     private final String lastname;
     private final String firstname;
     private ArrayList<String> names;
     private final String name;
     
+    /**
+     * Creates a new author
+     * @param name The first and last name of the author, separated with whitespace(s)
+     */
     public Author(String name)
     {
         this.name = name;
@@ -41,20 +48,33 @@ public class Author implements Serializable {
         else { firstname = name; lastname = null;}
         
     }
+    /**
+     * 
+     * @return Author's full name
+     */
     public String getName(){
         return this.name;
     }
-    
+    /**
+     * 
+     * @return Author's last name
+     */
     public String lastname(){
         if(lastname.isEmpty()) return null;
         return this.lastname;
     }
-    
+    /**
+     * 
+     * @return Author's first name
+     */
     public String firstname(){
         if(firstname.isEmpty()) return null;
         return this.firstname;
     }
-    
+    /**
+     * 
+     * @return Author's full name
+     */
     @Override
     public String toString(){
         return name;
