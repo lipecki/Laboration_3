@@ -9,37 +9,52 @@ package library;
  *  • Lista alla böcker.
  *  • Avsluta och skriva all information till fil.
  */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.*;
 import library.Book.BookValue;
 import library.Search.*;
 
 public class Menu {
 
     private CollectionOfBooks books;
-    private Scanner userSays;
-
-    public Menu() {
-        this("books.ser");
-    }
+    private BufferedReader userSays;
+    private PrintStream outPut;
     
-    public Menu(String newSerializedLibrary) {
-    	userSays = new Scanner(System.in);
+    public Menu() {
+        this("books.ser", System.in, System.out);
+    }
+    /**
+     * Prompts the user with a menu for navigating in the library. 
+     * @param newSerializedLibrary the file, containing books, to be read
+     * @param in the InputStream to read from
+     * @param out the OutputStream to write to
+     */
+    public Menu(String newSerializedLibrary, InputStream in, OutputStream out) {
+        userSays = new BufferedReader(new InputStreamReader(in));
+        outPut = new PrintStream(out);
         books = FileHelper.read(newSerializedLibrary);
     }
     
     /**
      * The menu loop starts running.
      */
-    public void theShowMustGoOn(){
+    public void theShowMustGoOn() throws IOException{
         char select = ' ';
         String selection;
         
         while(select != 'E'){
             printMenu();
-            selection = userSays.nextLine();
+            selection = userSays.readLine();
             if(!selection.isEmpty()) select = selection.toUpperCase().charAt(0);
             
             switch(select) {
@@ -47,11 +62,11 @@ public class Menu {
                 case 'R':   removeBook(); break;
                 case 'S':   search(); break;
                 case 'L':   showLibrary(); break;
-                case 'E':   for(int i = 0; i < 30; i++) System.out.println("");
-                            System.out.println("End of line");
+                case 'E':   for(int i = 0; i < 30; i++) outPut.println("");
+                            outPut.println("End of line");
                             break;
                             
-                default:    System.out.println("Sorry, I must have misread. Please select again!");
+                default:    outPut.println("Sorry, I must have misread. Please select again!");
             }
             
         }
@@ -59,7 +74,7 @@ public class Menu {
     /**
      * Prints the main menu.
      */
-    private static void printMenu(){
+    private void printMenu(){
         String [] menu = {
                 "\n------Menu------",
                 "A: Add Book",
@@ -67,7 +82,7 @@ public class Menu {
                 "S: Search",
                 "L: Show Library",
                 "E: End Of Line"};
-        for(String s: menu) System.out.println(s);
+        for(String s: menu) outPut.println(s);
     }
     /**
      * Prompts the user with the interface for the search functionality.
@@ -78,32 +93,32 @@ public class Menu {
         Search find = new Search(books);
         //char c = find.promptUser();
         listOfBooks = find.search(books); 
-        if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
+        if(listOfBooks != null) outPut.print(booksToTable(listOfBooks));
         
     }
     /**
      * Prompts the user with the interface to add a new book to the library. The new collection is then written to the file.
      */
-    private void addBook() {
+    private void addBook() throws IOException {
         String isbn, title;
         int edition;
         double price;
         List<Author> authors = new ArrayList<>();
         
-        System.out.println("ISBN:");
-        isbn = userSays.nextLine();
-        System.out.println("Title:");
-        title = userSays.nextLine();
-        System.out.println("Edition:");
-        edition = Integer.parseInt(userSays.nextLine());
-        System.out.println("Price:");
-        price = Double.parseDouble(userSays.nextLine());
+        outPut.println("ISBN:");
+        isbn = userSays.readLine();
+        outPut.println("Title:");
+        title = userSays.readLine();
+        outPut.println("Edition:");
+        edition = Integer.parseInt(userSays.readLine());
+        outPut.println("Price:");
+        price = Double.parseDouble(userSays.readLine());
         int authorCount = 0;
         while (true)
         {
             authorCount++;
-            System.out.println("(d for done) Author " + authorCount + ":");
-            String name = userSays.nextLine();
+            outPut.println("(d for done) Author " + authorCount + ":");
+            String name = userSays.readLine();
             if (name.equals("d")) break;
             authors.add(new Author(name));
         }
@@ -117,9 +132,9 @@ public class Menu {
     /**
      * Prompts the user with the interface that allows him or her to remove a book from the library. The new library is then written to the file.
      */
-    private void removeBook() {
-        System.out.println("\nPlease enter ISBN of book to remove: ");
-        String isbn = userSays.nextLine();
+    private void removeBook() throws IOException {
+        outPut.println("\nPlease enter ISBN of book to remove: ");
+        String isbn = userSays.readLine();
         ArrayList<Book> buks = books.getBooksByISBN(isbn);
         if(buks != null)
             for(Book b: buks) 
@@ -130,17 +145,17 @@ public class Menu {
      * Shows the library to the user.
      */
     private void showLibrary() {
-            System.out.print("--\t--Library--\t--\n");
+            outPut.print("--\t--Library--\t--\n");
             for(Book.BookValue v: BookValue.values()){
-                System.out.print(v + "\t");
-                if(v.equals(Book.BookValue.Title)) System.out.print("\t");
+                outPut.print(v + "\t");
+                if(v.equals(Book.BookValue.Title)) outPut.print("\t");
             }
             for(Book b: books.getBooks()){
-                System.out.println("");
+                outPut.println("");
                 int i = 0;
                 for(String s: b.toString().split(";")){
-                    System.out.print(s + "\t");
-                    if(i == 1 && s.length() < 15) System.out.print("\t");
+                    outPut.print(s + "\t");
+                    if(i == 1 && s.length() < 15) outPut.print("\t");
                     i++;
                 }
             }
