@@ -43,7 +43,7 @@ public class Menu {
             if(!selection.isEmpty()) select = selection.toUpperCase().charAt(0);
             
             switch(select) {
-                case 'A':   addBook(books); break;
+                case 'A':   addBook(); break;
                 case 'R':   removeBook(books); break;
                 case 'S':   search(books); break;
                 case 'L':   showLibrary(books); break;
@@ -77,10 +77,6 @@ public class Menu {
         if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
         
     }
-<<<<<<< HEAD
-    private void addBook(CollectionOfBooks books) {
-
-=======
     private void addBook() {
         String isbn, title;
         int edition;
@@ -108,7 +104,6 @@ public class Menu {
         for (Author a : authors)
             book.addAuthor(a);
         books.addBook(book);
->>>>>>> origin/master
     }
 
     private void removeBook(CollectionOfBooks books) {
