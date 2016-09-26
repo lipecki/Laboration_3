@@ -19,13 +19,14 @@ import java.io.ObjectOutputStream;
  */
 public class FileHelper {
     /**
-     * Creates a new empty "books" file.
+     * Creates a new file
+     * @param filename the path and name of the file
      */
-    public static void newFile()
+    public static void newFile(String filename)
     {
             
         try {
-            File file = new File("books");
+            File file = new File(filename);
             file.delete();
             file.createNewFile();
         } catch (IOException iOException) {
@@ -38,22 +39,24 @@ public class FileHelper {
     }
     
     /**
-     * Deletes the file "books".
+     * Deletes a file
+     * @param filename The path and name of the file to delete
      */
-    public static void deleteFile()
+    public static void deleteFile(String filename)
     {
-        File file = new File("books");
+        File file = new File(filename);
         file.delete();
     }
     
     /**
-     * Writes a CollectionOfBooks to the file "books". Throws an exception if the file was not found.
-     * @param coll The CollectionOfBooks to be written
+     * Writes a CollectionOfBooks object to a file
+     * @param coll CollectionOfBooks to be written
+     * @param filename The path and name of the file
      */
-    public static void write(CollectionOfBooks coll)
+    public static void write(CollectionOfBooks coll, String filename)
     {
         try {
-            File file = new File("books");
+            File file = new File(filename);
             FileOutputStream out = new FileOutputStream(file);
             ObjectOutputStream obout = new ObjectOutputStream(out);
             obout.writeObject(coll);
@@ -72,14 +75,15 @@ public class FileHelper {
         }
     }
     /**
-     * Reads a CollectionOfBooks from the file "books".
+     * Reads a CollectionOfBooks from a file
+     * @param filename the path and name of the file to read
      * @return the CollectionOfBooks. Null if the file is empty.
      */
-    public static CollectionOfBooks read()
+    public static CollectionOfBooks read(String filename)
     {
        CollectionOfBooks coll = new CollectionOfBooks();
        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("books"));
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
             coll = (CollectionOfBooks) in.readObject();
        }
        catch (FileNotFoundException fnfex)
