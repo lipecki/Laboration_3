@@ -19,8 +19,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Represents a book
- * @author Johan Lipecki <lipecki@kth.se>, Viggo Lundén <vlunden@kth.se>
+* Represents a book with values isbn, title, edition price and Author
+ * @author Johan Lipecki <lipecki@kth.se> 
+ * @author Viggo Lundén <vlunden@kth.se>
  */
 public class Book implements Comparable<Book>, Serializable{
 
@@ -32,7 +33,7 @@ public class Book implements Comparable<Book>, Serializable{
     private ArrayList<Author> authors;
     
     /**
-     * 
+     * A book object is instanciated
      * @param isbn
      * @param title
      * @param edition
@@ -48,7 +49,9 @@ public class Book implements Comparable<Book>, Serializable{
         authors = new ArrayList<>();
     }
     /**
-     * 
+     * Initializes ArrayList<Author> authors, for authors 
+     * and ArrayList<String> book, for book values, which is then filled 
+     * with the given parameters
      * @param isbn
      * @param title
      * @param edition
@@ -72,7 +75,7 @@ public class Book implements Comparable<Book>, Serializable{
     }
     
     /**
-     * 
+     * Initializes class lists for Book values and authors
      */
     private void init(){
         book = new ArrayList<>();
@@ -100,7 +103,7 @@ public class Book implements Comparable<Book>, Serializable{
     }
     
     /**
-     * 
+     * Adds author to Book list of authors
      * @param author 
      */
     public void addAuthor(Author author)
@@ -109,12 +112,20 @@ public class Book implements Comparable<Book>, Serializable{
        this.book.add(author.getName()); 
        
     }
-    
+    /**
+     * 
+     * @return a cloned ArrayList of Author(s)
+     */
     public ArrayList<Author> getAuthors()
     {
         return (ArrayList<Author>) authors.clone();
     }
     
+    /**
+     * 
+     * @return a semi-colon separated list of Book values, including authors,
+     * in the enum BookValue{} order: ISBN, Title, Edition, Price and Author(s)
+     */
     @Override
     public String toString(){
         StringBuilder book = new StringBuilder(this.book.get(0));
@@ -127,17 +138,20 @@ public class Book implements Comparable<Book>, Serializable{
         return book.toString();
     }
     
+    /**
+     * Compares book Titles
+     * @param o
+     * @return 0 if books are equal, 
+     * otherwise a negative or positive comparative value
+     * @throws NullPointerException 
+     */
     public int compareTo(Book o) throws NullPointerException {
         if (this == o) return 0;
         try{
-            return this.title.compareTo(((Book) o).getTitle());
-        }catch (NullPointerException nul){
-            try{
-                return this.edition - o.getEdition();
-            } catch (NullPointerException Nul){
-                return this.edition;
-            }
+            if(o.title != null) return this.title.compareTo(((Book) o).getTitle());
+            else return this.edition - o.getEdition();
         }
+        finally {}
     }
     
     public enum BookValue{
