@@ -18,21 +18,38 @@ import java.io.ObjectOutputStream;
  * @author Viggo
  */
 public class FileHelper {
-    
-    public static void newFile() throws IOException
+    /**
+     * Creates a new empty "books" file.
+     */
+    public static void newFile()
     {
-        File file = new File("books");
-        file.delete();
-        file.createNewFile();
+            
+        try {
+            File file = new File("books");
+            file.delete();
+            file.createNewFile();
+        } catch (IOException iOException) {
+            System.out.println("Failed to create new file.");
+            System.out.print(iOException.getMessage());
+            System.out.println("");
+        }
+        
         
     }
     
+    /**
+     * Deletes the file "books".
+     */
     public static void deleteFile()
     {
         File file = new File("books");
         file.delete();
     }
     
+    /**
+     * Writes a CollectionOfBooks to the file "books". Throws an exception if the file was not found.
+     * @param coll The CollectionOfBooks to be written
+     */
     public static void write(CollectionOfBooks coll)
     {
         try {
@@ -54,7 +71,10 @@ public class FileHelper {
             System.out.println("");
         }
     }
-    
+    /**
+     * Reads a CollectionOfBooks from the file "books".
+     * @return the CollectionOfBooks. Null if the file is empty.
+     */
     public static CollectionOfBooks read()
     {
        CollectionOfBooks coll = new CollectionOfBooks();
@@ -80,6 +100,8 @@ public class FileHelper {
            System.out.print(cnfex.getMessage());
            System.out.println("");
        }
-       
+       finally {
+           return coll;
+       }
     }
 }
