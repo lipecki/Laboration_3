@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * A toolkit for creating, deleting, reading and writing CollectionOfBooks objects to a file
+ * A toolkit for creating, deleting, reading and writing CollectionOfBooks objects to a file. Prints exception messages to System.out
  * @author Viggo Lundén <vlunden@kth.se>
  */
 public class FileHelper {

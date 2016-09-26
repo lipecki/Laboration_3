@@ -31,7 +31,7 @@ public class Menu {
     }
     
     /**
-     *The menu loop starts running
+     * The menu loop starts running.
      */
     public void theShowMustGoOn(){
         char select = ' ';
@@ -56,7 +56,9 @@ public class Menu {
             
         }
     }
-
+    /**
+     * Prints the main menu.
+     */
     private static void printMenu(){
         String [] menu = {
                 "\n------Menu------",

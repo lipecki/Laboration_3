@@ -83,10 +83,11 @@ public class CollectionOfBooks implements Serializable {
      */
     public ArrayList<Book> getBooksByTitle(String title)
     {
+        title = title.toLowerCase();
         ArrayList<Book> books_by_title = new ArrayList<>();
         for (Book b : books)
         {
-            if (b.getTitle().trim().contains(title)) books_by_title.add(b);
+            if (b.getTitle().trim().contains(title.toLowerCase())) books_by_title.add(b);
         }
         Collections.sort(books_by_title);
         return books_by_title;
