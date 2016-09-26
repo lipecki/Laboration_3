@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
- * @author Johan Lipecki <lipecki@kth.se>
+ * Represents a collection of books (Book)
+ * @author Johan Lipecki <lipecki@kth.se>, Viggo Lundén <vlunden@kth.se>
  */
 public class CollectionOfBooks implements Serializable {
     private ArrayList<Book> books;
@@ -68,7 +68,7 @@ public class CollectionOfBooks implements Serializable {
         return false;
     }
     /**
-     * Returns a clone of the collection of books
+     * Returns a <b>clone</b> of the collection of books
      * @return 
      */
     public ArrayList<Book> getBooks()
@@ -93,7 +93,7 @@ public class CollectionOfBooks implements Serializable {
     }
     
     /**
-     * Returns all books with the specified ISBN. NB! It does <b>not</b> return clones.
+     * Returns all books with the specified ISBN sorted by title. NB! It does <b>not</b> return clones.
      * @param isbn The specified isbn
      * @return ArrayList<Book>
      */
@@ -109,7 +109,7 @@ public class CollectionOfBooks implements Serializable {
     }
     
     /**
-     * Returns all books with the specified Author. NB! It does <b>not</b> return clones.
+     * Returns all books with the specified Author sorted by title. NB! It does <b>not</b> return clones.
      * @param author
      * @return ArrayList<Book>
      */
@@ -137,6 +137,7 @@ public class CollectionOfBooks implements Serializable {
             if (authors.contains(new Author(author)) || authorNames.contains(author)) books_by_author.add(b);
             authorNames.clear();
         }
+        Collections.sort(books_by_author);
         return books_by_author;
     }
 }

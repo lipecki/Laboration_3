@@ -44,9 +44,9 @@ public class Menu {
             
             switch(select) {
                 case 'A':   addBook(); break;
-                case 'R':   removeBook(books); break;
-                case 'S':   search(books); break;
-                case 'L':   showLibrary(books); break;
+                case 'R':   removeBook(); break;
+                case 'S':   search(); break;
+                case 'L':   showLibrary(); break;
                 case 'E':   for(int i = 0; i < 30; i++) System.out.println("");
                             System.out.println("End of line");
                             break;
@@ -67,9 +67,11 @@ public class Menu {
                 "E: End Of Line"};
         for(String s: menu) System.out.println(s);
     }
-
-    private void search(CollectionOfBooks books) {
-        ArrayList<Book> listOfBooks = null;
+    /**
+     * Prompts the user with the interface for the search functionality.
+     */
+    private void search() {
+        ArrayList<Book> listOfBooks;
         
         Search find = new Search(books);
         //char c = find.promptUser();
@@ -77,7 +79,9 @@ public class Menu {
         if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
         
     }
-
+    /**
+     * Prompts the user with the interface to add a new book to the library. The new collection is then written to the file.
+     */
     private void addBook() {
         String isbn, title;
         int edition;
@@ -108,17 +112,22 @@ public class Menu {
         FileHelper.write(books, "books.ser");
     }
 
-    private void removeBook(CollectionOfBooks books) {
+    /**
+     * Prompts the user with the interface that allows him or her to remove a book from the library. The new library is then written to the file.
+     */
+    private void removeBook() {
         System.out.println("\nPlease enter ISBN of book to remove: ");
         String isbn = userSays.nextLine();
         ArrayList<Book> buks = books.getBooksByISBN(isbn);
         if(buks != null)
             for(Book b: buks) 
                 books.removeBook(b);
-
+        FileHelper.write(books, "books.ser");
     }
-
-    private void showLibrary(CollectionOfBooks books) {
+    /**
+     * Shows the library to the user.
+     */
+    private void showLibrary() {
             System.out.print("--\t--Library--\t--\n");
             for(Book.BookValue v: BookValue.values()){
                 System.out.print(v + "\t");
@@ -133,6 +142,7 @@ public class Menu {
                     i++;
                 }
             }
+            
     }
     
     private String bookStringToTable(String book){

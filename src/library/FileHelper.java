@@ -14,8 +14,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
- * @author Viggo
+ * A toolkit for creating, deleting, reading and writing CollectionOfBooks objects to a file
+ * @author Viggo Lundén <vlunden@kth.se>
  */
 public class FileHelper {
     /**

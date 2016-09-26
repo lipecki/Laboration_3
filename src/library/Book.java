@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *
- * @author Johan Lipecki <lipecki@kth.se>
+ * Represents a book
+ * @author Johan Lipecki <lipecki@kth.se>, Viggo Lundén <vlunden@kth.se>
  */
 public class Book implements Comparable<Book>, Serializable{
 
