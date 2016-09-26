@@ -27,7 +27,7 @@ import library.Search.*;
 public class Menu {
 
     private CollectionOfBooks books;
-    private BufferedReader userSays;
+    private BufferedReader inPut;
     private PrintStream outPut;
     
     public Menu() {
@@ -40,7 +40,7 @@ public class Menu {
      * @param out the OutputStream to write to
      */
     public Menu(String newSerializedLibrary, InputStream in, OutputStream out) {
-        userSays = new BufferedReader(new InputStreamReader(in));
+        inPut = new BufferedReader(new InputStreamReader(in));
         outPut = new PrintStream(out);
         books = FileHelper.read(newSerializedLibrary);
     }
@@ -55,7 +55,7 @@ public class Menu {
         
         while(select != 'E'){
             printMenu();
-            selection = userSays.readLine();
+            selection = inPut.readLine();
             if(!selection.isEmpty()) select = selection.toUpperCase().charAt(0);
             
             switch(select) {
@@ -107,18 +107,18 @@ public class Menu {
         List<Author> authors = new ArrayList<>();
         
         outPut.println("ISBN:");
-        isbn = userSays.readLine();
+        isbn = inPut.readLine();
         
         outPut.println("Title:");
-        title = userSays.readLine();
+        title = inPut.readLine();
         
         outPut.println("Edition:");
-        String s_edition = userSays.readLine();
+        String s_edition = inPut.readLine();
         if (s_edition.trim().equals("")) edition = 0;
         else edition = Integer.parseInt(s_edition);
         
         outPut.println("Price:");
-        String s_price = userSays.readLine();
+        String s_price = inPut.readLine();
         if (s_price.trim().equals("")) price = 0;
         else price = Double.parseDouble(s_price);
         
@@ -127,7 +127,7 @@ public class Menu {
         {
             authorCount++;
             outPut.println("(d for done) Author " + authorCount + ":");
-            String name = userSays.readLine();
+            String name = inPut.readLine();
             if (name.equals("d")) break;
             authors.add(new Author(name));
         }
@@ -144,7 +144,7 @@ public class Menu {
      */
     private void removeBook() throws IOException {
         outPut.println("\nPlease enter ISBN of book to remove: ");
-        String isbn = userSays.readLine();
+        String isbn = inPut.readLine();
         ArrayList<Book> buks = books.getBooksByISBN(isbn);
         if(buks != null)
             for(Book b: buks) 
