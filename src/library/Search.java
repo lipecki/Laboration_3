@@ -20,7 +20,7 @@ import java.util.Scanner;
 import java.io.*;
 /**
  *
- * @author Johan Lipecki <lipecki@kth.se>
+ * @author Johan Lipecki <lipecki@kth.se>, Viggo Lundén <vlunden@kth.se>
  */
 public class Search {
     

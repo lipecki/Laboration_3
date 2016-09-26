@@ -134,7 +134,8 @@ public class CollectionOfBooks implements Serializable {
                     if(name.equalsIgnoreCase(author) || name.toLowerCase().contains(author.toLowerCase())) books_by_author.add(b);
                 }
             }
-            if (authors.contains(new Author(author)) || authorNames.contains(author)) books_by_author.add(b);
+            if (authors.contains(new Author(author)) || authorNames.contains(author)) 
+                if(!books_by_author.contains(b)) books_by_author.add(b);
             authorNames.clear();
         }
         Collections.sort(books_by_author);
