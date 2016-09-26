@@ -88,11 +88,10 @@ public class Menu {
     /**
      * Prompts the user with the interface for the search functionality.
      */
-    private void search() {
+    private void search() throws IOException {
         ArrayList<Book> listOfBooks;
         
-        Search find = new Search(books);
-        //char c = find.promptUser();
+        Search find = new Search(books, inPut, outPut);
         listOfBooks = find.search(books); 
         if(listOfBooks != null) outPut.print(booksToTable(listOfBooks));
         
