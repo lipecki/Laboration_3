@@ -47,6 +47,7 @@ public class Menu {
     
     /**
      * The menu loop starts running.
+     * @throws java.io.IOException if reading from the InputStream failed
      */
     public void theShowMustGoOn() throws IOException{
         char select = ' ';
