@@ -29,10 +29,10 @@ public class Search {
     CollectionOfBooks books;
     ArrayList<Book> result;
     
-    public Search(CollectionOfBooks books, InputStream in, OutputStream out){
+    public Search(CollectionOfBooks books, BufferedReader in, PrintStream out){
         this.books = books;
-        inPut = new BufferedReader(new InputStreamReader(in));
-        outPut = new PrintStream(out);
+        inPut = in;
+        outPut = out;
     }
     
     private enum searchValues{
