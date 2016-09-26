@@ -18,19 +18,13 @@ import java.io.ObjectOutputStream;
  * @author Viggo
  */
 public class FileHelper {
-    public static void newFile()
+    
+    public static void newFile() throws IOException
     {
-
         File file = new File("books");
         file.delete();
-        try {
-            file.createNewFile();
-        }
-        catch (IOException ioex)
-        {
-            System.out.println("Failed to create a new file.");
-            System.out.print(ioex.getMessage());
-        }
+        file.createNewFile();
+        
     }
     
     public static void deleteFile()
@@ -51,30 +45,41 @@ public class FileHelper {
         {
             System.out.println("Could not find the file containing books!");
             System.out.print(fnfex.getMessage());
+            System.out.println("");
         }
         catch (IOException ioex)
         {
             System.out.println("Could not write to the file, please make sure that it's not already in use by another process.");
             System.out.print(ioex.getMessage());
+            System.out.println("");
         }
     }
     
     public static CollectionOfBooks read()
     {
        CollectionOfBooks coll = new CollectionOfBooks();
-       try{
+       try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("books"));
             coll = (CollectionOfBooks) in.readObject();
        }
-       catch (ClassNotFoundException cnfex)
+       catch (FileNotFoundException fnfex)
        {
-           cnfex.printStackTrace();
+            System.out.println("Could not find the file containing books!");
+            System.out.print(fnfex.getMessage());
+            System.out.println("");
        }
        catch (IOException ioex)
        {
-           System.out.println("Could not read from the file, please make sure that it's not already in use by another process.");
-           System.out.print(ioex.getMessage());
+            System.out.println("Could not read from the file, please make sure that it's not already in use by another process.");
+            System.out.print(ioex.getMessage());
+            System.out.println("");
        }
-       return coll;
+       catch (ClassNotFoundException cnfex)
+       {
+           System.out.println("Failed to deserialize object");
+           System.out.print(cnfex.getMessage());
+           System.out.println("");
+       }
+       
     }
 }
