@@ -17,28 +17,32 @@ package library;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.*;
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
  */
 public class Search {
-    Scanner userSays = new Scanner(System.in);
+    
+    BufferedReader inPut;
+    PrintStream outPut;
     CollectionOfBooks books;
     ArrayList<Book> result;
     
-    public Search(CollectionOfBooks books){
+    public Search(CollectionOfBooks books, InputStream in, OutputStream out){
         this.books = books;
+        inPut = new BufferedReader(new InputStreamReader(in));
+        outPut = new PrintStream(out);
     }
     
     private enum searchValues{
         ISBN,Author,Title;
     }
     
-    public char promptUser() {
+    public char promptUser() throws IOException {
         printSearchMenu();
         String selection;
-        selection = userSays.nextLine();        
+        selection = inPut.readLine();        
         if(selection.isEmpty()) selection = String.valueOf(promptUser());
         return selection.toUpperCase().charAt(0);
     }
@@ -53,7 +57,7 @@ public class Search {
         for(String s: menu) System.out.println("\t" + s);
     }
     
-    public ArrayList<Book> search(CollectionOfBooks books) {
+    public ArrayList<Book> search(CollectionOfBooks books) throws IOException {
         //ArrayList<Book> result;
         char select = ' ';
         
@@ -64,7 +68,7 @@ public class Search {
         return result;
     }
     
-    private ArrayList<Book> getQuery(char select){
+    private ArrayList<Book> getQuery(char select) throws IOException{
         //ArrayList<Book> result;
         while(result == null){
             switch(select) {
@@ -73,7 +77,7 @@ public class Search {
                 case 'A':   result = getResults(searchValues.Author); break;
                 case 'N':   result = new ArrayList<>(); break;
                 default:    System.out.println("Sorry, I must have misread. Please select again!");
-                            String selection = userSays.nextLine();
+                            String selection = inPut.readLine();
                             select = selection.toUpperCase().charAt(0);
                             
             }
@@ -81,10 +85,10 @@ public class Search {
         return result;
     }
     
-    private ArrayList<Book> getResults(searchValues searchType){
+    private ArrayList<Book> getResults(searchValues searchType) throws IOException{
         //ArrayList<Book> result;
         System.out.println("Please type query: ");
-        String search = userSays.nextLine();
+        String search = inPut.readLine();
         switch(searchType){
             
             case ISBN  : result = books.getBooksByISBN(search); break;
