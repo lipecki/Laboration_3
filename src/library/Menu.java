@@ -96,15 +96,16 @@ public class Menu {
         while (true)
         {
             authorCount++;
-            System.out.println("(q for quit) Author " + authorCount + ":");
+            System.out.println("(d for done) Author " + authorCount + ":");
             String name = userSays.nextLine();
-            if (name.equals("q")) break;
+            if (name.equals("d")) break;
             authors.add(new Author(name));
         }
         Book book = new Book(isbn, title, edition, price);
         for (Author a : authors)
             book.addAuthor(a);
         books.addBook(book);
+        FileHelper.write(books, "books.ser");
     }
 
     private void removeBook(CollectionOfBooks books) {
