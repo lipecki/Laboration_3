@@ -132,18 +132,22 @@ public class Menu {
     private void showLibrary() {
             System.out.print("--\t--Library--\t--\n");
             for(Book.BookValue v: BookValue.values()){
-                System.out.print(v + "\t");
-                if(v.equals(Book.BookValue.Title)) System.out.print("\t");
+                System.out.print(v + "\t\t");
+                if(v != v.ISBN) System.out.print("\t");
+                
             }
             for(Book b: books.getBooks()){
                 System.out.println("");
                 int i = 0;
                 for(String s: b.toString().split(";")){
-                    System.out.print(s + "\t");
-                    if(i == 1 && s.length() < 15) System.out.print("\t");
+                    System.out.print(s);
+                    if(s.length() < 8) System.out.print("\t\t");
+                    else if(s.length() < 15) System.out.print("\t");
+                    if(i != 0) System.out.print("\t");
                     i++;
                 }
             }
+            
             
     }
     
