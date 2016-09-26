@@ -102,7 +102,7 @@ public class CollectionOfBooks implements Serializable {
         ArrayList<Book> books_by_isbn = new ArrayList<>();
         for (Book b : books)
         {
-            if (b.getISBN().equals(isbn)) books_by_isbn.add(b);
+            if (b.getISBN().contains(isbn)) books_by_isbn.add(b);
         }
         Collections.sort(books_by_isbn);
         return books_by_isbn;
