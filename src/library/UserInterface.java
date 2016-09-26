@@ -46,19 +46,9 @@ public class UserInterface {
          
         Menu menu = new Menu();
         CollectionOfBooks books = test.BooksTest();
-        menu.theShowMustGoOn(books);
+        menu.theShowMustGoOn();
         
-        menu();
         
-    }
-
-    public static void openLibrary(){
-        
-    }
-    
-    public static void menu() throws FileNotFoundException, IOException, ClassNotFoundException{
-        CollectionOfBooks coll = read();
-        System.out.println("");
     }
     
 }

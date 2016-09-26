@@ -21,14 +21,18 @@ public class Menu {
     private Scanner userSays;
 
     public Menu() {
+        this("books.ser");
+    }
+    
+    public Menu(String newSerializedLibrary) {
     	userSays = new Scanner(System.in);
-        books = FileHelper.read();
+        books = FileHelper.read(newSerializedLibrary);
     }
     
     /**
      *The menu loop starts running
      */
-    public void theShowMustGoOn(CollectionOfBooks books){
+    public void theShowMustGoOn(){
         char select = ' ';
         String selection;
         
@@ -89,8 +93,12 @@ public class Menu {
             }
             for(Book b: books.getBooks()){
                 System.out.println("");
-                for(String s: b.toString().split(";"))
+                int i = 0;
+                for(String s: b.toString().split(";")){
                     System.out.print(s + "\t");
+                    if(i == 1 && s.length() < 15) System.out.print("\t");
+                    i++;
+                }
             }
     }
     
