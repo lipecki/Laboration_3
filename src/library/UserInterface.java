@@ -15,13 +15,9 @@
  */
 package library;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import static library.FileHelper.read;
 import library.tests.BooksTest;
 
 /**
