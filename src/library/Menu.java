@@ -77,6 +77,7 @@ public class Menu {
         if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
         
     }
+
     private void addBook() {
         String isbn, title;
         int edition;
@@ -107,7 +108,7 @@ public class Menu {
     }
 
     private void removeBook(CollectionOfBooks books) {
-        System.out.println("\nPlease enter ISBN or book to remove: ");
+        System.out.println("\nPlease enter ISBN of book to remove: ");
         String isbn = userSays.nextLine();
         ArrayList<Book> buks = books.getBooksByISBN(isbn);
         if(buks != null)
