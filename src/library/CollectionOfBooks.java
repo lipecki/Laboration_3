@@ -126,9 +126,13 @@ public class CollectionOfBooks implements Serializable {
         {
             authors = b.getAuthors();
             for(Author a: authors){
+                //Add entire name to list
                 authorNames.add(a.toString());
-                for(String names: a.getName().split(" "))
-                    authorNames.add(names.replace(",","").trim());
+                for(String name: a.getName().trim().split(" ")){
+                    //remove csv-chars accidentally left
+                    name = name.replace(",","").replace(";","");
+                    if(name.equalsIgnoreCase(author)) books_by_author.add(b);
+                }
             }
             if (authors.contains(new Author(author)) || authorNames.contains(author)) books_by_author.add(b);
             authorNames.clear();
