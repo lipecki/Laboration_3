@@ -11,6 +11,7 @@ package library;
  */
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import library.Book.BookValue;
 import library.Search.*;
@@ -76,8 +77,33 @@ public class Menu {
         if(listOfBooks != null) System.out.print(booksToTable(listOfBooks));
         
     }
-    private void addBook(CollectionOfBooks books) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void addBook() {
+        String isbn, title;
+        int edition;
+        double price;
+        List<Author> authors = new ArrayList<>();
+        
+        System.out.println("ISBN:");
+        isbn = userSays.nextLine();
+        System.out.println("Title:");
+        title = userSays.nextLine();
+        System.out.println("Edition:");
+        edition = Integer.parseInt(userSays.nextLine());
+        System.out.println("Price:");
+        price = Double.parseDouble(userSays.nextLine());
+        int authorCount = 0;
+        while (true)
+        {
+            authorCount++;
+            System.out.println("(q for quit) Author " + authorCount + ":");
+            String name = userSays.nextLine();
+            if (name.equals("q")) break;
+            authors.add(new Author(name));
+        }
+        Book book = new Book(isbn, title, edition, price);
+        for (Author a : authors)
+            book.addAuthor(a);
+        books.addBook(book);
     }
 
     private void removeBook(CollectionOfBooks books) {
