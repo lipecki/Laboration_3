@@ -123,8 +123,9 @@ public class Book implements Comparable<Book>, Serializable{
     
     /**
      * 
-     * @return a semi-colon separated list of Book values, including authors,
-     * in the enum BookValue{} order: ISBN, Title, Edition, Price and Author(s)
+     * @return a semi-colon separated list of Book values, 
+     * including authors, in the enum BookValues{} order: 
+     * ISBN, Title, Edition, Price and Author(s)
      */
     @Override
     public String toString(){
@@ -154,7 +155,7 @@ public class Book implements Comparable<Book>, Serializable{
         finally {}
     }
     
-    public enum BookValue{
+    public enum BookValues{
         ISBN, Title, Edition, Price, Author;
     }
     

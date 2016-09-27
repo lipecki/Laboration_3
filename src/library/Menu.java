@@ -1,14 +1,5 @@
 package library;
 
-/**
- * 
- *  *Följande alternativ ska minst finnas i menyn:
- *  •Lägga till böcker
- *  • Ta bort böcker
- *  • Söka efter titel, författare respektive ISBN.
- *  • Lista alla böcker.
- *  • Avsluta och skriva all information till fil.
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +9,15 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import library.Book.BookValue;
+import library.Book.BookValues;
 
+/**
+ * Menu class for a library of Book(s)
+ * Provides an interface with console printouts 
+ * and uses the FileHelper class to load a serialized library
+ * @author Johan Lipecki <lipecki@kth.se>
+ * @author Viggo Lundén <vlunden@kth.se>
+ */
 public class Menu {
 
     private CollectionOfBooks books;
@@ -151,7 +149,7 @@ public class Menu {
      */
     private void showLibrary() {
             outPut.print("--\t--Library--\t--\n");
-            for(Book.BookValue v: BookValue.values()){
+            for(Book.BookValues v: BookValues.values()){
                 outPut.print(v + "\t\t");
                 if(v != v.ISBN) outPut.print("\t");
             }
@@ -179,11 +177,11 @@ public class Menu {
         ArrayList<String> bookParts= new ArrayList();
         bookParts.addAll(Arrays.asList(book.split(";", 10)));
         
-        StringBuilder string = new StringBuilder(Book.BookValue.ISBN + ": " + bookParts.get(0) + "\n");
+        StringBuilder string = new StringBuilder(Book.BookValues.ISBN + ": " + bookParts.get(0) + "\n");
         for(int i = 1; i < bookParts.size(); i++){
             if(i>4) string.append(", ").append(bookParts.get(i)).append("\n");
             else {
-                string.append(Book.BookValue.values()[i]).append(": ");
+                string.append(Book.BookValues.values()[i]).append(": ");
                 string.append(bookParts.get(i)).append("\n");
             }
         }

@@ -35,13 +35,13 @@ public class Search {
         outPut = out;
     }
     
-    private enum searchValues{
+    private enum SearchValues{
         ISBN,Author,Title;
     }
     
     /**
      * Prompts user for search category after printing search menu
-     * @return char value of user selection
+     * @return uppercase char value of user selection
      * @throws IOException 
      */
     private char promptUser() throws IOException {
@@ -90,9 +90,9 @@ public class Search {
         //ArrayList<Book> result;
         while(result == null){
             switch(select) {
-                case 'T':   result = getResults(searchValues.Title); break;
-                case 'I':   result = getResults(searchValues.ISBN); break; 
-                case 'A':   result = getResults(searchValues.Author); break;
+                case 'T':   result = getResults(SearchValues.Title); break;
+                case 'I':   result = getResults(SearchValues.ISBN); break; 
+                case 'A':   result = getResults(SearchValues.Author); break;
                 case 'N':   result = new ArrayList<>(); break;
                 default:    outPut.println("Sorry, I must have misread. Please select again!");
                             String selection = inPut.readLine();
@@ -108,7 +108,7 @@ public class Search {
      * @return
      * @throws IOException 
      */
-    private ArrayList<Book> getResults(searchValues searchType) throws IOException{
+    private ArrayList<Book> getResults(SearchValues searchType) throws IOException{
         //ArrayList<Book> result;
         outPut.println("Please type query: ");
         String search = inPut.readLine();
