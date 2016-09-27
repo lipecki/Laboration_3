@@ -38,10 +38,10 @@ public class UserInterface {
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
         
-        BooksTest test = new BooksTest();
-         
+        //BooksTest test = new BooksTest();
+        //CollectionOfBooks books = test.BooksTest();
         Menu menu = new Menu();
-        CollectionOfBooks books = test.BooksTest();
+        
         menu.theShowMustGoOn();
         
         

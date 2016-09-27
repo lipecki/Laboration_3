@@ -38,7 +38,7 @@ public class Search {
         ISBN,Author,Title;
     }
     
-    public char promptUser() throws IOException {
+    private char promptUser() throws IOException {
         printSearchMenu();
         String selection;
         selection = inPut.readLine();        
@@ -46,16 +46,23 @@ public class Search {
         return selection.toUpperCase().charAt(0);
     }
     
-    private static void printSearchMenu(){
+    private void printSearchMenu(){
         String [] menu = {
                 "-- --Search Menu-- --",
                 "T: Title search",
                 "I: ISBN search",
                 "A: Author search",
                 "N: Nevermind, Please take me back!"};
-        for(String s: menu) System.out.println("\t" + s);
+        for(String s: menu) outPut.println("\t" + s);
     }
     
+    /**
+     * Prompts user with a search menu, 
+     * collects the selection and gets query from user
+     * @param books
+     * @return  ArrayList of search results
+     * @throws IOException 
+     */
     public ArrayList<Book> search(CollectionOfBooks books) throws IOException {
         //ArrayList<Book> result;
         char select = ' ';
@@ -75,7 +82,7 @@ public class Search {
                 case 'I':   result = getResults(searchValues.ISBN); break; 
                 case 'A':   result = getResults(searchValues.Author); break;
                 case 'N':   result = new ArrayList<>(); break;
-                default:    System.out.println("Sorry, I must have misread. Please select again!");
+                default:    outPut.println("Sorry, I must have misread. Please select again!");
                             String selection = inPut.readLine();
                             select = selection.toUpperCase().charAt(0);
                             
@@ -86,7 +93,7 @@ public class Search {
     
     private ArrayList<Book> getResults(searchValues searchType) throws IOException{
         //ArrayList<Book> result;
-        System.out.println("Please type query: ");
+        outPut.println("Please type query: ");
         String search = inPut.readLine();
         switch(searchType){
             
