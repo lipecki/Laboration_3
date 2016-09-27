@@ -104,8 +104,9 @@ public class Search {
     }
     
     /**
+     * prompts for query of specified searchType
      * @param searchType Title, ISBN or Author 
-     * @return
+     * @return Book search results' ArrayList
      * @throws IOException 
      */
     private ArrayList<Book> getResults(SearchValues searchType) throws IOException{

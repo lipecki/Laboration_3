@@ -26,14 +26,11 @@ import library.tests.BooksTest;
  */
 public class UserInterface {
 
-    Scanner userSays;
-    
-    UserInterface(){
-        userSays = new Scanner(System.in);
-    }
     /**
      * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException 
      */
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
