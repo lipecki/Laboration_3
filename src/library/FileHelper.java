@@ -69,7 +69,9 @@ public class FileHelper {
         }
         catch (IOException ioex)
         {
-            System.out.println("Could not write to the file, please make sure that it's not already in use by another process.");
+            System.out.println("Could not write to the file, "
+                    + "please make sure that it's not "
+                    + "already in use by another process.");
             System.out.print(ioex.getMessage());
             System.out.println("");
         }
@@ -94,7 +96,9 @@ public class FileHelper {
        }
        catch (IOException ioex)
        {
-            System.out.println("Could not read from the file, please make sure that it's not already in use by another process.");
+            System.out.println("Could not read from the file, "
+                    + "please make sure that it's not "
+                    + "already in use by another process.");
             System.out.print(ioex.getMessage());
             System.out.println("");
        }

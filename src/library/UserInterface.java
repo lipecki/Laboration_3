@@ -17,12 +17,11 @@ package library;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
-import library.tests.BooksTest;
 
 /**
  *
  * @author Johan Lipecki <lipecki@kth.se>
+ * @author Viggo Lundén <vlunden@kth.se>
  */
 public class UserInterface {
 
@@ -34,9 +33,7 @@ public class UserInterface {
      */
     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
-        
-        //BooksTest test = new BooksTest();
-        //CollectionOfBooks books = test.BooksTest();
+
         Menu menu = new Menu();
         
         menu.theShowMustGoOn();
