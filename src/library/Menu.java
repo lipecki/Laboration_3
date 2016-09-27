@@ -31,14 +31,14 @@ public class Menu {
     }
     /**
      * Prompts the user with a menu for navigating in the library. 
-     * @param newSerializedLibrary the file, containing books, to be read
+     * @param serializedLibraryFilename the file, containing books, to be read
      * @param in the InputStream to read from
      * @param out the OutputStream to write to
      */
-    public Menu(String newSerializedLibrary, InputStream in, OutputStream out) {
+    public Menu(String serializedLibraryFilename, InputStream in, OutputStream out) {
         inPut = new BufferedReader(new InputStreamReader(in));
         outPut = new PrintStream(out);
-        books = FileHelper.read(newSerializedLibrary);
+        books = FileHelper.read(serializedLibraryFilename);
     }
     
     /**
@@ -170,6 +170,11 @@ public class Menu {
             
     }
     
+    /**
+     * Creates table with value headers and values from Book
+     * @param book
+     * @return Printable Table in string format
+     */
     private String bookStringToTable(String book){
         ArrayList<String> bookParts= new ArrayList();
         bookParts.addAll(Arrays.asList(book.split(";", 10)));
@@ -185,6 +190,11 @@ public class Menu {
         return string.toString();
     }
     
+    /**
+     * Creates a list of books in table format
+     * @param books
+     * @return printable table in String format
+     */
     private String booksToTable(ArrayList<Book> books){
         StringBuilder book = new StringBuilder();
         for(Book b: books) {

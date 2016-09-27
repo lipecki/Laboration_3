@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.io.*;
 /**
  *
- * @author Johan Lipecki <lipecki@kth.se>, Viggo Lundén <vlunden@kth.se>
+ * @author Johan Lipecki <lipecki@kth.se>, 
+ * @author Viggo Lundén <vlunden@kth.se>
  */
 public class Search {
     
@@ -38,6 +39,11 @@ public class Search {
         ISBN,Author,Title;
     }
     
+    /**
+     * Prompts user for search category after printing search menu
+     * @return char value of user selection
+     * @throws IOException 
+     */
     private char promptUser() throws IOException {
         printSearchMenu();
         String selection;
@@ -74,6 +80,12 @@ public class Search {
         return result;
     }
     
+    /**
+     * searches for user query in library
+     * @param select char value for Title, ISBN, Author or Nothing
+     * @return  Book ArrayList with matching results
+     * @throws IOException 
+     */
     private ArrayList<Book> getQuery(char select) throws IOException{
         //ArrayList<Book> result;
         while(result == null){
@@ -91,6 +103,11 @@ public class Search {
         return result;
     }
     
+    /**
+     * @param searchType Title, ISBN or Author 
+     * @return
+     * @throws IOException 
+     */
     private ArrayList<Book> getResults(searchValues searchType) throws IOException{
         //ArrayList<Book> result;
         outPut.println("Please type query: ");
