@@ -57,7 +57,13 @@ public class GUI extends Application {
 
             // paint the shapes
             for (Shape b : world.getShapes()) {
-                if(b != null) b.paint(gc);
+                if(b != null) {
+                    b.paint(gc);
+                    if(b instanceof FillableShape){
+                        if(nowNs%100.0 == 0.0) ((FillableShape) b).setFilled(true);
+                        else if (nowNs%33.0 == 0.0) ((FillableShape) b).setFilled(false);
+                    }
+                }
                 else continue;
             }
         }
