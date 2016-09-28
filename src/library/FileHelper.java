@@ -33,7 +33,8 @@ public class FileHelper {
             System.out.println("Failed to create new file.");
             System.out.print(iOException.getMessage());
             System.out.println("");
-        }
+        } 
+        
         
         
     }
@@ -55,9 +56,10 @@ public class FileHelper {
      */
     public static void write(CollectionOfBooks coll, String filename)
     {
+        FileOutputStream out = null;
         try {
             File file = new File(filename);
-            FileOutputStream out = new FileOutputStream(file);
+            out = new FileOutputStream(file);
             ObjectOutputStream obout = new ObjectOutputStream(out);
             obout.writeObject(coll);
         }
@@ -75,6 +77,14 @@ public class FileHelper {
             System.out.print(ioex.getMessage());
             System.out.println("");
         }
+        finally {
+            try {
+                out.close();
+            } catch (IOException iOException) {
+                System.out.println("Failed to close file stream");
+                System.out.println(iOException.getMessage());
+            }
+        }
     }
     /**
      * Reads a CollectionOfBooks from a file
@@ -84,8 +94,10 @@ public class FileHelper {
     public static CollectionOfBooks read(String filename)
     {
        CollectionOfBooks coll = new CollectionOfBooks();
+       FileInputStream fin = null;
        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
+            fin = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fin);
             coll = (CollectionOfBooks) in.readObject();
        }
        catch (FileNotFoundException fnfex)
@@ -109,6 +121,12 @@ public class FileHelper {
            System.out.println("");
        }
        finally {
+           try {
+               fin.close();
+           } catch (IOException iOException) {
+               System.out.println("Failed to close file stream");
+               System.out.println(iOException.getMessage());
+           }
            return coll;
        }
     }
