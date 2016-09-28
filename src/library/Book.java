@@ -146,6 +146,7 @@ public class Book implements Comparable<Book>, Serializable{
      * otherwise a negative or positive comparative value
      * @throws NullPointerException 
      */
+    @Override
     public int compareTo(Book o) throws NullPointerException {
         if (this == o) return 0;
         try{
