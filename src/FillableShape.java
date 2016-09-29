@@ -13,14 +13,12 @@ import javafx.scene.paint.Color;
  */
 public abstract class FillableShape extends Shape{
     protected boolean filled;
-    protected Color color;
     protected FillableShape(){
         super();
     }
     protected FillableShape(double x1, double y1, Color color, boolean filled){
         super(x1,y1,color);
         this.filled = filled;
-        this.color = color;
     }
     public boolean isFilled(){
         return this.filled;

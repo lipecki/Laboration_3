@@ -13,46 +13,41 @@ import javafx.scene.paint.Color;
  * @author Viggo
  */
 public class Circle extends FillableShape {
+    private double diameter;
     /**
-     * Creates a new black, filled circle with width and height set as 10
+     * Creates a new black, filled circle with diameter set as 10
      */
     public Circle(){
-        this(10, 10, Color.BLACK, true);
+        super();
+        init(10);
     }
     /**
-     * Creates a new fillable circle with desired width, height and color.
-     * @param width The width of the circle
-     * @param height The height of the circle
+     * Creates a new fillable circle with desired diameter and color.
+     * @param diameter
      * @param color The color of the circle
      * @param filled Whether the circle is filled or not
      */
-    public Circle(double width, double height, Color color, boolean filled)
+    public Circle(double diameter, Color color, boolean filled)
     {
-        super(width, height, color);
-        this.setFilled(filled);
-        this.setX(0);
-        this.setY(0);
+        super(0.0,0.0,color,filled);
+        init(diameter);
     }
-    public double getHeight(){
-        return this.height;
+    
+    private void init(double diameter){
+        this.diameter = diameter;
     }
-    public double getWidth(){
-        return this.width;
+    public double getDiameter(){
+        return this.diameter;
     }
+
     /**
-     * Sets the new height of the circle
-     * @param height 
+     * Sets the new diameter of the circle
+     * @param diameter
      */
-    public void setHeight(double height){
-        this.height = height;
+    public void setDiameter(double diameter){
+        this.diameter = diameter;
     }
-    /**
-     * Sets the new width of the circle
-     * @param width 
-     */
-    public void setWidth(double width){
-        this.width = width;
-    }
+
     /**
      * Paints the circle with a GraphicsContext reference
      * @param gc GraphicsContext reference
@@ -62,17 +57,18 @@ public class Circle extends FillableShape {
     {
         if (this.filled) {
             gc.setFill(this.getColor());
-            gc.fillOval(this.getX(), this.getY(), this.width, this.height);
+            gc.fillOval(this.getX(), this.getY(), this.diameter, this.diameter);
         }
         else {
             gc.setStroke(this.getColor());
-            gc.strokeOval(this.getX(), this.getY(), this.width, this.height);
+            gc.strokeOval(this.getX(), this.getY(), this.diameter, this.diameter);
+
         }
     }
     
     @Override
     public String toString(){
-        return "X: " + this.getX() + ", Y: " + this.getY() + ", Width: " + this.width + ", Height: " + this.height;
+        return "Upper left X: " + this.getX() + ", Upper left Y: " + this.getY() + ", Diameter: " + this.diameter;
     }
     /**
      * Bounces the circle off of the given "box" width and height
@@ -92,12 +88,12 @@ public class Circle extends FillableShape {
         double dy = this.getDy();
         if (x < boxX) {
             this.setVelocity(Math.abs(dx), dy);
-        } else if (x + width > boxWidth) {
+        } else if (x + diameter > boxWidth) {
             this.setVelocity(-Math.abs(dx), dy);
         }
         if (y < boxY) {
             this.setVelocity(dx, Math.abs(dy));
-        } else if (y + height > boxHeight) {
+        } else if (y + diameter > boxHeight) {
             this.setVelocity(dx, -Math.abs(dy));
         }
     }

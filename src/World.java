@@ -28,8 +28,8 @@ public class World {
         
         // Shapes are instanciated
         shapes[0] = (Shape) new Line(Color.CADETBLUE, 30.0,200.0, 50.0,100.0 ,300.0, 10);
-        shapes[1] = (Shape) new Rectangle(20, 20, Color.TOMATO, false);
-        shapes[2] = (Shape) new Circle(20, 20, Color.BLUE, true);
+        shapes[1] = (Shape) new Rectangle(0,0,20, 20, Color.TOMATO, false);
+        shapes[2] = (Shape) new Circle(20.0, Color.BLUE, true);
         int f = 50;
         for(Shape s: shapes) s.setVelocity(f += 20, f += 30);
         

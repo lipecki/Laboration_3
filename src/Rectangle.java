@@ -13,9 +13,11 @@ import javafx.scene.paint.Color;
  * @author Viggo & Johan
  */
 public class Rectangle extends FillableShape {
+    double width, height;
     
     public Rectangle(){
-        this(20, 20, Color.BLUE, true);
+        super();
+        init(20.0, 20.0);
     }
 
     /**
@@ -25,10 +27,15 @@ public class Rectangle extends FillableShape {
      * @param color of filled rectangle
      * @param filled
      */
-    public Rectangle(double width, double height, Color color, boolean filled)
+    public Rectangle(double x, double y,double width, double height, Color color, boolean filled)
     {
-        super(width, height,color);
-        this.filled = filled;
+        super(x, y,color, filled);
+        init(width,height);
+    }
+    
+    private void init(double width, double height){
+        this.width = width;
+        this.height = height;
     }
     
     /**
@@ -64,11 +71,11 @@ public class Rectangle extends FillableShape {
     public void paint(GraphicsContext gc)
     {
         if(this.filled) {
-            gc.setFill(this.color);
+            gc.setFill(this.getColor());
             gc.fillRect(this.getX(), this.getY(), this.height, this.width);
         }
         else {
-            gc.setStroke(this.color);
+            gc.setStroke(this.getColor());
             gc.strokeRect(this.getX(), this.getY(), width, height);
         }
     }
